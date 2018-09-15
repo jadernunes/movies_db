@@ -78,11 +78,13 @@
 			isa = PBXGroup;
 			children = (
 				2787B1BB214DB4B4006E180C /* AppDelegate.swift */,
+				2787B1DF214DB54C006E180C /* Router */,
+				2787B1DB214DB50C006E180C /* Features */,
+				2787B1DD214DB523006E180C /* Network */,
+				2787B1DE214DB539006E180C /* Database */,
+				2787B1DC214DB516006E180C /* Resources */,
 				2787B1BD214DB4B4006E180C /* ViewController.swift */,
 				2787B1BF214DB4B4006E180C /* Main.storyboard */,
-				2787B1C2214DB4B5006E180C /* Assets.xcassets */,
-				2787B1C4214DB4B5006E180C /* LaunchScreen.storyboard */,
-				2787B1C7214DB4B5006E180C /* Info.plist */,
 			);
 			path = MoviesDB;
 			sourceTree = "<group>";
@@ -94,6 +96,44 @@
 				2787B1D2214DB4B5006E180C /* Info.plist */,
 			);
 			path = MoviesDBTests;
+			sourceTree = "<group>";
+		};
+		2787B1DB214DB50C006E180C /* Features */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		2787B1DC214DB516006E180C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2787B1C2214DB4B5006E180C /* Assets.xcassets */,
+				2787B1C4214DB4B5006E180C /* LaunchScreen.storyboard */,
+				2787B1C7214DB4B5006E180C /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		2787B1DD214DB523006E180C /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		2787B1DE214DB539006E180C /* Database */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		2787B1DF214DB54C006E180C /* Router */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
