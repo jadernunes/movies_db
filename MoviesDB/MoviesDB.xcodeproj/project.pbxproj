@@ -130,12 +130,12 @@
 		2787B1BA214DB4B4006E180C /* MoviesDB */ = {
 			isa = PBXGroup;
 			children = (
-				2787B209214EC772006E180C /* Extension */,
 				2787B1BB214DB4B4006E180C /* AppDelegate.swift */,
 				2787B1DF214DB54C006E180C /* Router */,
 				2787B1DB214DB50C006E180C /* Features */,
 				2787B1DD214DB523006E180C /* Network */,
 				2787B1DE214DB539006E180C /* Database */,
+				2787B209214EC772006E180C /* Extension */,
 				2787B1DC214DB516006E180C /* Resources */,
 			);
 			path = MoviesDB;
