@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		15CA1883FE472CF1C2A6B9CC /* Pods_MoviesDBTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96664D3210F45BF24B83C1B3 /* Pods_MoviesDBTests.framework */; };
 		27108008214EECF6000FCA58 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27108007214EECF6000FCA58 /* R.generated.swift */; };
+		2710800B214EF567000FCA58 /* General.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2710800A214EF567000FCA58 /* General.storyboard */; };
+		2710800D214EF5DF000FCA58 /* TopRated.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2710800C214EF5DF000FCA58 /* TopRated.storyboard */; };
+		27108010214EF63F000FCA58 /* Popular.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2710800F214EF63F000FCA58 /* Popular.storyboard */; };
+		27108013214EF71F000FCA58 /* RouterSplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27108012214EF71F000FCA58 /* RouterSplashScreen.swift */; };
 		2787B1BC214DB4B4006E180C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2787B1BB214DB4B4006E180C /* AppDelegate.swift */; };
 		2787B1C1214DB4B4006E180C /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2787B1BF214DB4B4006E180C /* SplashScreen.storyboard */; };
 		2787B1C3214DB4B5006E180C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2787B1C2214DB4B5006E180C /* Assets.xcassets */; };
@@ -45,6 +49,10 @@
 
 /* Begin PBXFileReference section */
 		27108007214EECF6000FCA58 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		2710800A214EF567000FCA58 /* General.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = General.storyboard; sourceTree = "<group>"; };
+		2710800C214EF5DF000FCA58 /* TopRated.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TopRated.storyboard; sourceTree = "<group>"; };
+		2710800F214EF63F000FCA58 /* Popular.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Popular.storyboard; sourceTree = "<group>"; };
+		27108012214EF71F000FCA58 /* RouterSplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterSplashScreen.swift; sourceTree = "<group>"; };
 		2787B1B8214DB4B4006E180C /* MoviesDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2787B1BB214DB4B4006E180C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2787B1C0214DB4B4006E180C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SplashScreen.storyboard; sourceTree = "<group>"; };
@@ -107,6 +115,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2710800E214EF619000FCA58 /* TopRated */ = {
+			isa = PBXGroup;
+			children = (
+				2710800C214EF5DF000FCA58 /* TopRated.storyboard */,
+			);
+			path = TopRated;
+			sourceTree = "<group>";
+		};
+		27108011214EF646000FCA58 /* Popular */ = {
+			isa = PBXGroup;
+			children = (
+				2710800F214EF63F000FCA58 /* Popular.storyboard */,
+			);
+			path = Popular;
+			sourceTree = "<group>";
+		};
 		2787B1AF214DB4B4006E180C = {
 			isa = PBXGroup;
 			children = (
@@ -153,7 +177,10 @@
 		2787B1DB214DB50C006E180C /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				2710800A214EF567000FCA58 /* General.storyboard */,
 				2787B1E0214DEE05006E180C /* SplashScreen */,
+				2710800E214EF619000FCA58 /* TopRated */,
+				27108011214EF646000FCA58 /* Popular */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -193,6 +220,7 @@
 		2787B1DF214DB54C006E180C /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				27108012214EF71F000FCA58 /* RouterSplashScreen.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -358,9 +386,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27108010214EF63F000FCA58 /* Popular.storyboard in Resources */,
 				2787B1C3214DB4B5006E180C /* Assets.xcassets in Resources */,
 				2787B20E214EEB85006E180C /* Localizable.strings in Resources */,
+				2710800D214EF5DF000FCA58 /* TopRated.storyboard in Resources */,
 				2787B1C1214DB4B4006E180C /* SplashScreen.storyboard in Resources */,
+				2710800B214EF567000FCA58 /* General.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,6 +526,7 @@
 				2787B1EB214DEF77006E180C /* BaseModel.swift in Sources */,
 				2787B1EE214DEF97006E180C /* DatabaseManager.swift in Sources */,
 				2787B1E2214DEE73006E180C /* SplashScreenViewController.swift in Sources */,
+				27108013214EF71F000FCA58 /* RouterSplashScreen.swift in Sources */,
 				2787B20B214EC788006E180C /* UIViewController+Extension.swift in Sources */,
 				2787B1E7214DEF32006E180C /* Configuration.swift in Sources */,
 				2787B1BC214DB4B4006E180C /* AppDelegate.swift in Sources */,

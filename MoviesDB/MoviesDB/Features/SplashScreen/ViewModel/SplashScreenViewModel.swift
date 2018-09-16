@@ -18,6 +18,12 @@ final class SplashScreenViewModel {
     /// Contains the Configuration
     var configuration: Variable<ErrorMoviesDB?> = Variable<ErrorMoviesDB?>(nil)
     
+    /// Control call request if fail
+    private var countAttempt = 1
+    
+    ///Check if request has already finished
+    var isRequestFinished = false
+    
     /// Initialize the ViewModel with a delegate if it'll be necessary
     ///
     /// - Parameter delegate: Optional Controller protocol reference. You can override it if will be necessary
@@ -27,8 +33,19 @@ final class SplashScreenViewModel {
     
     func requestConfiguration(){
         delegate.requestConfiguration { (config, error) in
+            self.isRequestFinished = true
+            if let _ = error {
+                if self.countAttempt <= 3 {
+                    self.countAttempt += 1
+                    self.requestConfiguration()
+                }
+            }
+            
             self.configuration.value = error
         }
     }
     
+    func openHomeScreen(){
+        RouterSplashScreen().navigate(screen: .home)
+    }
 }

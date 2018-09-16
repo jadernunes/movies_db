@@ -31,10 +31,17 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 1 images.
+  /// This `R.image` struct is generated, and contains static references to 2 images.
   struct image {
+    /// Image `iconTopRated`.
+    static let iconTopRated = Rswift.ImageResource(bundle: R.hostingBundle, name: "iconTopRated")
     /// Image `imageSplashScreen`.
     static let imageSplashScreen = Rswift.ImageResource(bundle: R.hostingBundle, name: "imageSplashScreen")
+    
+    /// `UIImage(named: "iconTopRated", bundle: ..., traitCollection: ...)`
+    static func iconTopRated(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.iconTopRated, compatibleWith: traitCollection)
+    }
     
     /// `UIImage(named: "imageSplashScreen", bundle: ..., traitCollection: ...)`
     static func imageSplashScreen(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
@@ -59,14 +66,35 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 1 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 4 storyboards.
   struct storyboard {
+    /// Storyboard `General`.
+    static let general = _R.storyboard.general()
+    /// Storyboard `Popular`.
+    static let popular = _R.storyboard.popular()
     /// Storyboard `SplashScreen`.
     static let splashScreen = _R.storyboard.splashScreen()
+    /// Storyboard `TopRated`.
+    static let topRated = _R.storyboard.topRated()
+    
+    /// `UIStoryboard(name: "General", bundle: ...)`
+    static func general(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.general)
+    }
+    
+    /// `UIStoryboard(name: "Popular", bundle: ...)`
+    static func popular(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.popular)
+    }
     
     /// `UIStoryboard(name: "SplashScreen", bundle: ...)`
     static func splashScreen(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.splashScreen)
+    }
+    
+    /// `UIStoryboard(name: "TopRated", bundle: ...)`
+    static func topRated(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.topRated)
     }
     
     fileprivate init() {}
@@ -140,7 +168,33 @@ struct _R: Rswift.Validatable {
   
   struct storyboard: Rswift.Validatable {
     static func validate() throws {
+      try general.validate()
       try splashScreen.validate()
+    }
+    
+    struct general: Rswift.StoryboardResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let homeTabBarController = StoryboardViewControllerResource<UIKit.UITabBarController>(identifier: "HomeTabBarController")
+      let name = "General"
+      
+      func homeTabBarController(_: Void = ()) -> UIKit.UITabBarController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: homeTabBarController)
+      }
+      
+      static func validate() throws {
+        if _R.storyboard.general().homeTabBarController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'homeTabBarController' could not be loaded from storyboard 'General' as 'UIKit.UITabBarController'.") }
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct popular: Rswift.StoryboardResourceWithInitialControllerType {
+      typealias InitialController = UIKit.UINavigationController
+      
+      let bundle = R.hostingBundle
+      let name = "Popular"
+      
+      fileprivate init() {}
     }
     
     struct splashScreen: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
@@ -158,6 +212,15 @@ struct _R: Rswift.Validatable {
         if UIKit.UIImage(named: "imageSplashScreen") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'imageSplashScreen' is used in storyboard 'SplashScreen', but couldn't be loaded.") }
         if _R.storyboard.splashScreen().splashScreenViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'splashScreenViewController' could not be loaded from storyboard 'SplashScreen' as 'SplashScreenViewController'.") }
       }
+      
+      fileprivate init() {}
+    }
+    
+    struct topRated: Rswift.StoryboardResourceWithInitialControllerType {
+      typealias InitialController = UIKit.UINavigationController
+      
+      let bundle = R.hostingBundle
+      let name = "TopRated"
       
       fileprivate init() {}
     }
