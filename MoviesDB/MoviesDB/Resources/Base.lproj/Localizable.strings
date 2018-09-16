@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  MoviesDB
+
+  Created by Jader Nunes on 2018-09-16.
+  Copyright © 2018 Jader Nunes. All rights reserved.
+*/
+
+"messageRequestFail" = "Request fail";
+"messageLoadImagesFail" = "Load images fail";
+"messageLoadDataFail" = "Load data fail";
