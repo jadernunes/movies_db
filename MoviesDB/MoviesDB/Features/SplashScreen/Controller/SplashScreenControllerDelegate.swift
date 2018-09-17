@@ -11,18 +11,18 @@ import Foundation
 /// SplashScreenControllerDelegate protocol to request Model to Api
 protocol SplashScreenControllerDelegate  {
     
-    /// The alias to represent the closure of the Model
-    typealias ConfigurationCompletion = ((Configuration?, ErrorMoviesDB?) -> Void)
+    /// The alias to represent the closure of the request
+    typealias InitialDataCompletion = ((Bool, ErrorMoviesDB?) -> Void)
     
     /// Controller initialization
     ///
     /// - Parameter delegate: Optional api protocol reference. You can override it if will be necessary
-    init(delegate: SplashScreenServiceDelegate)
+    init(delegateConfiguration: ConfigurationServiceDelegate, delegateGenreList: GenreListServiceDelegate)
     
-    /// Request Configuration
+    /// Request Initial data
     ///
     /// - Parameters:
     ///   - completion: return a completion response
-    func requestConfiguration(completion: @escaping ConfigurationCompletion)
+    func requestInitialData(completion: @escaping InitialDataCompletion)
     
 }

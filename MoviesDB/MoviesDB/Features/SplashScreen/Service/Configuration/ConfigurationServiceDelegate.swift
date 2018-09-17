@@ -1,5 +1,5 @@
 //
-//  SplashScreenServiceDelegate.swift
+//  ConfigurationServiceDelegate.swift
 //  MoviesDB
 //
 //  Created by Jader Nunes on 2018-09-16.
@@ -8,10 +8,10 @@
 
 import Foundation
 
-protocol SplashScreenServiceDelegate {
+protocol ConfigurationServiceDelegate {
     
     /// Representation of data result
-    typealias ConfigurationCompletion = ((Configuration?, ErrorMoviesDB?) -> Void)
+    typealias ConfigurationCompletion = ((_ configuration: Configuration?, _ error: ErrorMoviesDB?) -> Void)
     
     /// Request base configuration for other requests
     ///

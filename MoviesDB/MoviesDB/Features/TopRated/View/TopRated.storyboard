@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yV4-hY-fEY">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -9,21 +9,43 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--List Top Rated View Controller-->
         <scene sceneID="2eX-eG-Qi7">
             <objects>
-                <viewController id="lCr-hu-lOq" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ListTopRatedViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lCr-hu-lOq" customClass="ListTopRatedViewController" customModule="MoviesDB" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="y6R-mg-pRC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wDi-uo-J6w">
+                                <rect key="frame" x="0.0" y="44" width="375" height="768"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="W4t-u8-JlX">
+                                    <size key="itemSize" width="136" height="222"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="wDi-uo-J6w" firstAttribute="trailing" secondItem="rEL-Ix-gic" secondAttribute="trailing" id="5Po-5t-eWZ"/>
+                            <constraint firstAttribute="bottom" secondItem="wDi-uo-J6w" secondAttribute="bottom" id="No2-8d-Osu"/>
+                            <constraint firstItem="wDi-uo-J6w" firstAttribute="top" secondItem="rEL-Ix-gic" secondAttribute="top" id="h8o-sW-hIl"/>
+                            <constraint firstItem="wDi-uo-J6w" firstAttribute="leading" secondItem="rEL-Ix-gic" secondAttribute="leading" id="oGs-Cq-1Gh"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="rEL-Ix-gic"/>
                     </view>
                     <navigationItem key="navigationItem" id="7Vf-kP-RHh"/>
+                    <connections>
+                        <outlet property="collectionViewTopRated" destination="wDi-uo-J6w" id="QnA-42-YkS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0he-LE-3Bc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1012" y="277.51124437781112"/>
+            <point key="canvasLocation" x="1012" y="277.09359605911334"/>
         </scene>
         <!--Top Rated-->
         <scene sceneID="94l-fE-oF4">

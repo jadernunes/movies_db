@@ -1,5 +1,5 @@
 //
-//  SplashScreenService.swift
+//  GenreListService.swift
 //  MoviesDB
 //
 //  Created by Jader Nunes on 2018-09-16.
@@ -10,12 +10,12 @@ import Foundation
 
 /// Sub path
 ///
-/// - `default`: path param of Configuration
-enum ConfigurationURL: String {
-    case `default` = "/configuration"
+/// - `default`: path param of genre list
+enum GenreListURL: String {
+    case `default` = "/genre/movie/list"
 }
 
-final class SplashScreenService: SplashScreenServiceDelegate {
+final class GenreListService: GenreListServiceDelegate {
     
     //MARK: - Variables
     
@@ -31,28 +31,28 @@ final class SplashScreenService: SplashScreenServiceDelegate {
         self.delegate = delegate
     }
     
-    func requestConfiguration(completion: @escaping ConfigurationCompletion){
-        self.delegate.get(withUrl: ConfigurationURL.default.rawValue, andParameters: nil) { (data, errorServer) in
+    func requestGenreList(completion: @escaping GenreListCompletion){
+        self.delegate.get(withUrl: GenreListURL.default.rawValue, andParameters: nil) { (data, errorServer) in
             guard let errorObject = errorServer else {
                 do {
                     guard
                         let data = data,
                         let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any],
-                        let configurationJson = json[KeysJson.images.rawValue] as? [String: Any]
+                        let arrayGenre = json[KeysJson.genres.rawValue] as? [[String: Any]]
                         else {
-                            return completion(nil, ErrorMoviesDB(message: R.string.localizable.messageLoadImagesFail()))
+                            return completion([], ErrorMoviesDB(message: R.string.localizable.messageLoadGenreListFail()))
                     }
                     
-                    Configuration.save(data: configurationJson, completion: { (object) in
-                        completion(object, nil)
+                    GenreList.save(array: arrayGenre, completion: { (genres) in
+                        completion(genres, nil)
                     })
                 } catch {
-                    completion(nil, ErrorMoviesDB(message: R.string.localizable.messageLoadDataFail()))
+                    completion([], ErrorMoviesDB(message: R.string.localizable.messageLoadDataFail()))
                 }
                 return
             }
             
-            completion(nil, errorObject)
+            completion([], errorObject)
         }
     }
     

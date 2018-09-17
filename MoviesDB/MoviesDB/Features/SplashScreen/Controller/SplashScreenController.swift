@@ -16,18 +16,28 @@ final class SplashScreenController: SplashScreenControllerDelegate {
     
     //MARK: - Variables
     
-    /// Api protocol reference
-    private let delegate: SplashScreenServiceDelegate
+    /// Configuration service delegate
+    private let delegateConfiguration: ConfigurationServiceDelegate
+    
+    // Genre list service delegate
+    private let delegateGenreList: GenreListServiceDelegate
     
     //MARK: - Life cycle
     
-    required init(delegate: SplashScreenServiceDelegate = SplashScreenService()) {
-        self.delegate = delegate
+    required init(delegateConfiguration: ConfigurationServiceDelegate = ConfigurationService(), delegateGenreList: GenreListServiceDelegate = GenreListService()) {
+        self.delegateConfiguration = delegateConfiguration
+        self.delegateGenreList = delegateGenreList
     }
     
     //MARK: - Custom methods
     
-    func requestConfiguration(completion: @escaping ConfigurationCompletion){
-        delegate.requestConfiguration(completion: completion)
+    func requestInitialData(completion: @escaping InitialDataCompletion){
+        delegateConfiguration.requestConfiguration { (configuration, errorConfig) in
+            self.delegateGenreList.requestGenreList(completion: { (genres, errorGenre) in
+                let error = errorConfig ?? errorGenre
+                let success = error == nil
+                completion(success, error)
+            })
+        }
     }
 }

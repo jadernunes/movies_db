@@ -32,7 +32,7 @@ class SplashScreenViewController: UIViewController {
     
     /// Register and configure view model
     private func setupViewModel(){
-        viewModel.configuration.asObservable().subscribe({ object in
+        viewModel.errorInitialData.asObservable().subscribe({ object in
             if self.viewModel.isRequestFinished {
                 guard
                     let error = object.element as? ErrorMoviesDB else {
@@ -43,11 +43,11 @@ class SplashScreenViewController: UIViewController {
                 self.showErrorMesssage(mesage: error.message)
             }
         }).disposed(by: disposeBag)
-        requestConfigurationData()
+        requestInitialData()
     }
     
     /// Request initial data
-    private func requestConfigurationData(){
-        viewModel.requestConfiguration()
+    private func requestInitialData(){
+        viewModel.requestInitialData()
     }
 }

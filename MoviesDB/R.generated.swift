@@ -31,12 +31,14 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 2 images.
+  /// This `R.image` struct is generated, and contains static references to 3 images.
   struct image {
     /// Image `iconTopRated`.
     static let iconTopRated = Rswift.ImageResource(bundle: R.hostingBundle, name: "iconTopRated")
     /// Image `imageSplashScreen`.
     static let imageSplashScreen = Rswift.ImageResource(bundle: R.hostingBundle, name: "imageSplashScreen")
+    /// Image `posterPlaceholder`.
+    static let posterPlaceholder = Rswift.ImageResource(bundle: R.hostingBundle, name: "posterPlaceholder")
     
     /// `UIImage(named: "iconTopRated", bundle: ..., traitCollection: ...)`
     static func iconTopRated(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
@@ -48,16 +50,41 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.imageSplashScreen, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "posterPlaceholder", bundle: ..., traitCollection: ...)`
+    static func posterPlaceholder(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.posterPlaceholder, compatibleWith: traitCollection)
+    }
+    
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 0 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 2 nibs.
   struct nib {
+    /// Nib `LoadingCollectionViewCell`.
+    static let loadingCollectionViewCell = _R.nib._LoadingCollectionViewCell()
+    /// Nib `MovieCollectionViewCell`.
+    static let movieCollectionViewCell = _R.nib._MovieCollectionViewCell()
+    
+    /// `UINib(name: "LoadingCollectionViewCell", in: bundle)`
+    static func loadingCollectionViewCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.loadingCollectionViewCell)
+    }
+    
+    /// `UINib(name: "MovieCollectionViewCell", in: bundle)`
+    static func movieCollectionViewCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.movieCollectionViewCell)
+    }
+    
     fileprivate init() {}
   }
   
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 0 reuse identifiers.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 2 reuse identifiers.
   struct reuseIdentifier {
+    /// Reuse identifier `cellLoading`.
+    static let cellLoading: Rswift.ReuseIdentifier<LoadingCollectionViewCell> = Rswift.ReuseIdentifier(identifier: "cellLoading")
+    /// Reuse identifier `cellMovie`.
+    static let cellMovie: Rswift.ReuseIdentifier<MovieCollectionViewCell> = Rswift.ReuseIdentifier(identifier: "cellMovie")
+    
     fileprivate init() {}
   }
   
@@ -102,12 +129,20 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 3 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 5 localization keys.
     struct localizable {
+      /// Base translation: Load Top rated fail
+      /// 
+      /// Locales: Base
+      static let messageLoadTopRatedFail = Rswift.StringResource(key: "messageLoadTopRatedFail", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: Load data fail
       /// 
       /// Locales: Base
       static let messageLoadDataFail = Rswift.StringResource(key: "messageLoadDataFail", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: Load genres fail
+      /// 
+      /// Locales: Base
+      static let messageLoadGenreListFail = Rswift.StringResource(key: "messageLoadGenreListFail", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: Load images fail
       /// 
       /// Locales: Base
@@ -117,11 +152,25 @@ struct R: Rswift.Validatable {
       /// Locales: Base
       static let messageRequestFail = Rswift.StringResource(key: "messageRequestFail", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       
+      /// Base translation: Load Top rated fail
+      /// 
+      /// Locales: Base
+      static func messageLoadTopRatedFail(_: Void = ()) -> String {
+        return NSLocalizedString("messageLoadTopRatedFail", bundle: R.hostingBundle, value: "Load Top rated fail", comment: "")
+      }
+      
       /// Base translation: Load data fail
       /// 
       /// Locales: Base
       static func messageLoadDataFail(_: Void = ()) -> String {
         return NSLocalizedString("messageLoadDataFail", bundle: R.hostingBundle, value: "Load data fail", comment: "")
+      }
+      
+      /// Base translation: Load genres fail
+      /// 
+      /// Locales: Base
+      static func messageLoadGenreListFail(_: Void = ()) -> String {
+        return NSLocalizedString("messageLoadGenreListFail", bundle: R.hostingBundle, value: "Load genres fail", comment: "")
       }
       
       /// Base translation: Load images fail
@@ -163,12 +212,41 @@ struct _R: Rswift.Validatable {
   }
   
   struct nib {
+    struct _LoadingCollectionViewCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
+      typealias ReusableType = LoadingCollectionViewCell
+      
+      let bundle = R.hostingBundle
+      let identifier = "cellLoading"
+      let name = "LoadingCollectionViewCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> LoadingCollectionViewCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? LoadingCollectionViewCell
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct _MovieCollectionViewCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
+      typealias ReusableType = MovieCollectionViewCell
+      
+      let bundle = R.hostingBundle
+      let identifier = "cellMovie"
+      let name = "MovieCollectionViewCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> MovieCollectionViewCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? MovieCollectionViewCell
+      }
+      
+      fileprivate init() {}
+    }
+    
     fileprivate init() {}
   }
   
   struct storyboard: Rswift.Validatable {
     static func validate() throws {
       try general.validate()
+      try topRated.validate()
       try splashScreen.validate()
     }
     
@@ -216,11 +294,20 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    struct topRated: Rswift.StoryboardResourceWithInitialControllerType {
+    struct topRated: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
       typealias InitialController = UIKit.UINavigationController
       
       let bundle = R.hostingBundle
+      let listTopRatedViewController = StoryboardViewControllerResource<ListTopRatedViewController>(identifier: "ListTopRatedViewController")
       let name = "TopRated"
+      
+      func listTopRatedViewController(_: Void = ()) -> ListTopRatedViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: listTopRatedViewController)
+      }
+      
+      static func validate() throws {
+        if _R.storyboard.topRated().listTopRatedViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'listTopRatedViewController' could not be loaded from storyboard 'TopRated' as 'ListTopRatedViewController'.") }
+      }
       
       fileprivate init() {}
     }
