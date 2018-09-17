@@ -136,16 +136,12 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 6 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 7 localization keys.
     struct localizable {
-      /// Base translation: Load Popular fail
+      /// Base translation: Load Movie detail fail
       /// 
       /// Locales: Base
-      static let messageLoadPopularFail = Rswift.StringResource(key: "messageLoadPopularFail", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
-      /// Base translation: Load Top rated fail
-      /// 
-      /// Locales: Base
-      static let messageLoadTopRatedFail = Rswift.StringResource(key: "messageLoadTopRatedFail", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      static let messageLoadMovieDetailFail = Rswift.StringResource(key: "messageLoadMovieDetailFail", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: Load data fail
       /// 
       /// Locales: Base
@@ -158,23 +154,24 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let messageLoadImagesFail = Rswift.StringResource(key: "messageLoadImagesFail", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: Load popular fail
+      /// 
+      /// Locales: Base
+      static let messageLoadPopularFail = Rswift.StringResource(key: "messageLoadPopularFail", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: Load top rated fail
+      /// 
+      /// Locales: Base
+      static let messageLoadTopRatedFail = Rswift.StringResource(key: "messageLoadTopRatedFail", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: Request fail
       /// 
       /// Locales: Base
       static let messageRequestFail = Rswift.StringResource(key: "messageRequestFail", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       
-      /// Base translation: Load Popular fail
+      /// Base translation: Load Movie detail fail
       /// 
       /// Locales: Base
-      static func messageLoadPopularFail(_: Void = ()) -> String {
-        return NSLocalizedString("messageLoadPopularFail", bundle: R.hostingBundle, value: "Load Popular fail", comment: "")
-      }
-      
-      /// Base translation: Load Top rated fail
-      /// 
-      /// Locales: Base
-      static func messageLoadTopRatedFail(_: Void = ()) -> String {
-        return NSLocalizedString("messageLoadTopRatedFail", bundle: R.hostingBundle, value: "Load Top rated fail", comment: "")
+      static func messageLoadMovieDetailFail(_: Void = ()) -> String {
+        return NSLocalizedString("messageLoadMovieDetailFail", bundle: R.hostingBundle, value: "Load Movie detail fail", comment: "")
       }
       
       /// Base translation: Load data fail
@@ -196,6 +193,20 @@ struct R: Rswift.Validatable {
       /// Locales: Base
       static func messageLoadImagesFail(_: Void = ()) -> String {
         return NSLocalizedString("messageLoadImagesFail", bundle: R.hostingBundle, value: "Load images fail", comment: "")
+      }
+      
+      /// Base translation: Load popular fail
+      /// 
+      /// Locales: Base
+      static func messageLoadPopularFail(_: Void = ()) -> String {
+        return NSLocalizedString("messageLoadPopularFail", bundle: R.hostingBundle, value: "Load popular fail", comment: "")
+      }
+      
+      /// Base translation: Load top rated fail
+      /// 
+      /// Locales: Base
+      static func messageLoadTopRatedFail(_: Void = ()) -> String {
+        return NSLocalizedString("messageLoadTopRatedFail", bundle: R.hostingBundle, value: "Load top rated fail", comment: "")
       }
       
       /// Base translation: Request fail
