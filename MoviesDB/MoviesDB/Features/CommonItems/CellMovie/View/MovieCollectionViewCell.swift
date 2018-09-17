@@ -17,6 +17,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var labelGenre: UILabel!
     @IBOutlet weak var labelDate: UILabel!
+    @IBOutlet weak var labelVoteAverage: UILabel!
     @IBOutlet weak var imageViewPoster: UIImageView!{
         didSet{
             imageViewPoster.layer.cornerRadius = 15
@@ -56,6 +57,11 @@ class MovieCollectionViewCell: UICollectionViewCell {
         viewModel.date
             .asObservable()
             .bind(to: labelDate.rx.text)
+            .disposed(by: disposeBag)
+        
+        viewModel.voteAvarage
+            .asObservable()
+            .bind(to: labelVoteAverage.rx.text)
             .disposed(by: disposeBag)
         
         viewModel.urlPoster
