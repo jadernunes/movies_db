@@ -42,6 +42,8 @@
 		27108061214F4DE9000FCA58 /* ListPopularViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27108060214F4DE9000FCA58 /* ListPopularViewController.swift */; };
 		2710806A214F5763000FCA58 /* MovieDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27108069214F5763000FCA58 /* MovieDetailService.swift */; };
 		2710806C214F576E000FCA58 /* MovieDetailServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2710806B214F576E000FCA58 /* MovieDetailServiceDelegate.swift */; };
+		2710806E214F5B24000FCA58 /* MovieDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2710806D214F5B24000FCA58 /* MovieDetailController.swift */; };
+		27108071214F5B34000FCA58 /* MovieDetailControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27108070214F5B34000FCA58 /* MovieDetailControllerDelegate.swift */; };
 		2787B1BC214DB4B4006E180C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2787B1BB214DB4B4006E180C /* AppDelegate.swift */; };
 		2787B1C1214DB4B4006E180C /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2787B1BF214DB4B4006E180C /* SplashScreen.storyboard */; };
 		2787B1C3214DB4B5006E180C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2787B1C2214DB4B5006E180C /* Assets.xcassets */; };
@@ -109,6 +111,8 @@
 		27108060214F4DE9000FCA58 /* ListPopularViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPopularViewController.swift; sourceTree = "<group>"; };
 		27108069214F5763000FCA58 /* MovieDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailService.swift; sourceTree = "<group>"; };
 		2710806B214F576E000FCA58 /* MovieDetailServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailServiceDelegate.swift; sourceTree = "<group>"; };
+		2710806D214F5B24000FCA58 /* MovieDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailController.swift; sourceTree = "<group>"; };
+		27108070214F5B34000FCA58 /* MovieDetailControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailControllerDelegate.swift; sourceTree = "<group>"; };
 		2787B1B8214DB4B4006E180C /* MoviesDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2787B1BB214DB4B4006E180C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2787B1C0214DB4B4006E180C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SplashScreen.storyboard; sourceTree = "<group>"; };
@@ -391,6 +395,8 @@
 		27108066214F5729000FCA58 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				2710806D214F5B24000FCA58 /* MovieDetailController.swift */,
+				27108070214F5B34000FCA58 /* MovieDetailControllerDelegate.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -807,6 +813,7 @@
 				2787B20B214EC788006E180C /* UIViewController+Extension.swift in Sources */,
 				2710806C214F576E000FCA58 /* MovieDetailServiceDelegate.swift in Sources */,
 				2787B1E7214DEF32006E180C /* Configuration.swift in Sources */,
+				27108071214F5B34000FCA58 /* MovieDetailControllerDelegate.swift in Sources */,
 				2787B1BC214DB4B4006E180C /* AppDelegate.swift in Sources */,
 				2787B1F2214E9BA8006E180C /* SplashScreenViewModel.swift in Sources */,
 				2787B202214EABE5006E180C /* ApiRequestDelegate.swift in Sources */,
@@ -818,6 +825,7 @@
 				2710804F214F395B000FCA58 /* GenreListService.swift in Sources */,
 				2710803B214F1CD3000FCA58 /* String+Extension.swift in Sources */,
 				27108026214F0B98000FCA58 /* TopRatedServiceDelegate.swift in Sources */,
+				2710806E214F5B24000FCA58 /* MovieDetailController.swift in Sources */,
 				2710803D214F1D8D000FCA58 /* UIImageView+Extension.swift in Sources */,
 				2787B208214EB097006E180C /* SplashScreenControllerDelegate.swift in Sources */,
 				27108008214EECF6000FCA58 /* R.generated.swift in Sources */,

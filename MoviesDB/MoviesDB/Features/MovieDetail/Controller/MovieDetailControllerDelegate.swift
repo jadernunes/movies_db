@@ -1,26 +1,26 @@
 //
-//  PopularControllerDelegate.swift
+//  MovieDetailControllerDelegate.swift
 //  MoviesDB
 //
-//  Created by Jader Nunes on 2018-09-16.
+//  Created by Jader Nunes on 2018-09-17.
 //  Copyright © 2018 Jader Nunes. All rights reserved.
 //
 
 import Foundation
 
 /// PopularControllerDelegate protocol to request Model to Api
-protocol PopularControllerDelegate  {
+protocol MovieDetailControllerDelegate  {
     
-    /// Controller popular
+    /// Controller movie detail
     ///
     /// - Parameter delegate: Optional api protocol reference. You can override it if will be necessary
-    init(delegate: PopularServiceDelegate)
+    init(delegate: MovieDetailServiceDelegate)
     
     /// Request Popular movies
     ///
     /// - Parameters:
-    ///   - page: number of the next page
+    ///   - idMovie: id of the movie
     ///   - completion: result of request
-    func requestPopular(page: Int, completion: @escaping PopularCompletion)
-    
+    func requestMovieDetail(idMovie: Int, completion: @escaping MovieDetailCompletion)
 }
+
