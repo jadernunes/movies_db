@@ -18,8 +18,7 @@ extension UIImageView {
                 let urlBase = objConfig.getBaseUrl().value
                 let sizeImage = objConfig.getPosterSizes().value[1]
                 let url = URL(string: "\(String(describing: urlBase))\(sizeImage)\(subPath)")
-                let image = UIImage(named: "posterPlaceholder")//TODO: Insert image in project
-                self.kf.setImage(with: url, placeholder: image)
+                self.kf.setImage(with: url, placeholder: R.image.posterPlaceholder())
             }
         }
     }
@@ -30,8 +29,7 @@ extension UIImageView {
                 let urlBase = objConfig.getBaseUrl().value
                 let sizeImage = objConfig.getBackdropSizes().value[1]
                 let url = URL(string: "\(String(describing: urlBase))\(sizeImage)\(subPath)")
-                let image = UIImage(named: "backdropPlaceholder")//TODO: Insert image in project
-                self.kf.setImage(with: url, placeholder: image)
+                self.kf.setImage(with: url, placeholder: R.image.backdropPlaceholder())
             }
         }
     }

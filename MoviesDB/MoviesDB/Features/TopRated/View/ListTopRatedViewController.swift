@@ -45,7 +45,9 @@ class ListTopRatedViewController: UIViewController {
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        self.collectionViewTopRated.reloadData()
+        guard let collectionView = self.collectionViewTopRated else { return }
+        collectionView.reloadData()
+        
         super.viewWillTransition(to: size, with: coordinator)
     }
     
@@ -54,22 +56,33 @@ class ListTopRatedViewController: UIViewController {
     /// Register and configure view model
     private func setupViewModel(){
         
-        viewModel.movies.asObservable().subscribe({ movies  in
+        viewModel.movies.asObservable().subscribe({ [weak self] movies  in
             guard let _ = movies.element  else { return }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
-                self.refreshControl.endRefreshing()
-                self.collectionViewTopRated.reloadData()
+                self?.refreshControl.endRefreshing()
+                self?.collectionViewTopRated.reloadData()
             })
         }).disposed(by: self.disposeBag)
         
-        viewModel.isLoading.asObservable().subscribe({ isLoading  in
+        viewModel.isLoading.asObservable().subscribe({ [weak self] isLoading  in
             guard let isLoading = isLoading.element  else { return }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
                 if isLoading == false {
-                    self.refreshControl.endRefreshing()
+                    self?.refreshControl.endRefreshing()
                 }
             })
         }).disposed(by: self.disposeBag)
+        
+        self.viewModel.error
+            .asObservable()
+            .subscribe({ [weak self] object in
+                guard
+                    let errorElement = object.element,
+                    let error = errorElement
+                    else { return }
+                self?.showErrorMesssage(mesage: error.message)
+            })
+            .disposed(by: disposeBag)
         
         requestFirstPage()
     }
@@ -80,8 +93,9 @@ class ListTopRatedViewController: UIViewController {
         self.viewModel.requestFirstPage()
     }
     
-    private func openMovieDetail(indexPath: IndexPath){
-        //TODO: Implement
+    private func openMovieDetail(index: Int){
+        let movie = viewModel.movies.value[index]
+        viewModel.openMovieDetail(idMovie: movie.getId().value)
     }
     
     private func showCellLoaging(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
@@ -109,7 +123,7 @@ class ListTopRatedViewController: UIViewController {
 extension ListTopRatedViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //TODO: Open Detail Movie
+        openMovieDetail(index: indexPath.row)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {

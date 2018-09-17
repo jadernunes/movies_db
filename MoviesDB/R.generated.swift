@@ -31,8 +31,12 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 4 images.
+  /// This `R.image` struct is generated, and contains static references to 6 images.
   struct image {
+    /// Image `backdropPlaceholder`.
+    static let backdropPlaceholder = Rswift.ImageResource(bundle: R.hostingBundle, name: "backdropPlaceholder")
+    /// Image `iconClose`.
+    static let iconClose = Rswift.ImageResource(bundle: R.hostingBundle, name: "iconClose")
     /// Image `iconPopular`.
     static let iconPopular = Rswift.ImageResource(bundle: R.hostingBundle, name: "iconPopular")
     /// Image `iconTopRated`.
@@ -41,6 +45,16 @@ struct R: Rswift.Validatable {
     static let imageSplashScreen = Rswift.ImageResource(bundle: R.hostingBundle, name: "imageSplashScreen")
     /// Image `posterPlaceholder`.
     static let posterPlaceholder = Rswift.ImageResource(bundle: R.hostingBundle, name: "posterPlaceholder")
+    
+    /// `UIImage(named: "backdropPlaceholder", bundle: ..., traitCollection: ...)`
+    static func backdropPlaceholder(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.backdropPlaceholder, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "iconClose", bundle: ..., traitCollection: ...)`
+    static func iconClose(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.iconClose, compatibleWith: traitCollection)
+    }
     
     /// `UIImage(named: "iconPopular", bundle: ..., traitCollection: ...)`
     static func iconPopular(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
@@ -100,10 +114,12 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 4 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 5 storyboards.
   struct storyboard {
     /// Storyboard `General`.
     static let general = _R.storyboard.general()
+    /// Storyboard `Movie`.
+    static let movie = _R.storyboard.movie()
     /// Storyboard `Popular`.
     static let popular = _R.storyboard.popular()
     /// Storyboard `SplashScreen`.
@@ -114,6 +130,11 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "General", bundle: ...)`
     static func general(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.general)
+    }
+    
+    /// `UIStoryboard(name: "Movie", bundle: ...)`
+    static func movie(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.movie)
     }
     
     /// `UIStoryboard(name: "Popular", bundle: ...)`
@@ -277,6 +298,7 @@ struct _R: Rswift.Validatable {
       try popular.validate()
       try general.validate()
       try topRated.validate()
+      try movie.validate()
       try splashScreen.validate()
     }
     
@@ -293,6 +315,23 @@ struct _R: Rswift.Validatable {
         if UIKit.UIImage(named: "iconPopular") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'iconPopular' is used in storyboard 'General', but couldn't be loaded.") }
         if UIKit.UIImage(named: "iconTopRated") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'iconTopRated' is used in storyboard 'General', but couldn't be loaded.") }
         if _R.storyboard.general().homeTabBarController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'homeTabBarController' could not be loaded from storyboard 'General' as 'UIKit.UITabBarController'.") }
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct movie: Rswift.StoryboardResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let movieDetailViewController = StoryboardViewControllerResource<MovieDetailViewController>(identifier: "MovieDetailViewController")
+      let name = "Movie"
+      
+      func movieDetailViewController(_: Void = ()) -> MovieDetailViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: movieDetailViewController)
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "iconClose") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'iconClose' is used in storyboard 'Movie', but couldn't be loaded.") }
+        if _R.storyboard.movie().movieDetailViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'movieDetailViewController' could not be loaded from storyboard 'Movie' as 'MovieDetailViewController'.") }
       }
       
       fileprivate init() {}

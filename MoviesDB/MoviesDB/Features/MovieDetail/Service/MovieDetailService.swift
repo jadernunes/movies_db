@@ -33,7 +33,9 @@ final class MovieDetailService: MovieDetailServiceDelegate {
     
     func requestMovieDetail(idMovie: Int, completion: @escaping MovieDetailCompletion){
         
-        self.delegate.get(withUrl: MovieURL.default.rawValue, andParameters: nil) { (data, errorServer) in
+        let urlMovieDetail = "\(MovieURL.default.rawValue)/\(idMovie)"
+        
+        self.delegate.get(withUrl: urlMovieDetail, andParameters: nil) { (data, errorServer) in
             guard let errorObject = errorServer else {
                 do {
                     guard

@@ -32,6 +32,9 @@ final class ListTopRatedViewModel {
     /// Next page
     private var nextPage = 0
     
+    /// Error when call request
+    var error: Variable<ErrorMoviesDB?> = Variable<ErrorMoviesDB?>(nil)
+    
     //MARK: - Life cycle
     
     /// Initialize the ViewModel with a delegate if it'll be necessary
@@ -46,6 +49,7 @@ final class ListTopRatedViewModel {
     /// Request new updated data to View Model and then it'll update
     func requestTopRated(page: Int? = nil){
         delegate.requestTopRated(page: page ?? self.page) { [weak self] (movies, pageReceived, errorCustom) in
+            self?.error.value = errorCustom
             self?.isLoading.value = false
             self?.nextPage = pageReceived
             self?.movies.value.append(contentsOf: movies)
@@ -74,5 +78,11 @@ final class ListTopRatedViewModel {
         }
     }
     
-    
+    /// Open detail movie
+    ///
+    /// - Parameters:
+    ///   - idMovie: id of the Movie
+    func openMovieDetail(idMovie: Int){
+        RouterTopRated().navigate(screen: .movieDetail, idMovie: idMovie)
+    }
 }
