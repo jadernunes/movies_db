@@ -20,7 +20,12 @@ class ListTopRatedViewController: UIViewController {
     /// DisposeBag use to control memory
     private var disposeBag = DisposeBag()
     
-    let refreshControl = UIRefreshControl()
+    /// Refresh control to show loading
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(requestFirstPage), for: .valueChanged)
+        return refreshControl
+    }()
     
     //MARK: - Outlets
     
@@ -38,10 +43,14 @@ class ListTopRatedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.refreshControl.addTarget(self, action: #selector(self.requestFirstPage), for: .valueChanged)
-        self.collectionViewTopRated.addSubview(self.refreshControl)
-        
+        configureUI()
         setupViewModel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        viewModel.requestFirstPage()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -52,6 +61,16 @@ class ListTopRatedViewController: UIViewController {
     }
     
     //MARK: - Custom methods
+    
+    /// Configure all UI
+    private func configureUI(){
+        //Add refresh controll
+        collectionViewTopRated.addSubview(refreshControl)
+        DispatchQueue.main.async {
+            self.refreshControl.beginRefreshing()
+            self.collectionViewTopRated.setContentOffset(CGPoint(x: 0.0, y: self.view.safeAreaLayoutGuide.heightAnchor.accessibilityFrame.height - self.refreshControl.frame.size.height), animated: true)
+        }
+    }
     
     /// Register and configure view model
     private func setupViewModel(){
@@ -97,8 +116,6 @@ class ListTopRatedViewController: UIViewController {
                 self?.view.startLoader()
             })
             .disposed(by: disposeBag)
-        
-        requestFirstPage()
     }
     
     /// Request firs page

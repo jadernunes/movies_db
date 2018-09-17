@@ -51,6 +51,7 @@ final class ListPopularViewModel {
     
     /// Request new updated data to View Model and then it'll update
     func requestPopular(page: Int? = nil){
+        self.numberOfRows = 0
         self.isLoading.value = true
         if nextPage == 0 {
             isLoadingFirstRequest.value = true
@@ -77,9 +78,13 @@ final class ListPopularViewModel {
     ///
     /// - Parameter indexPath: indexPath of the cell
     func requestMoreMovies(index: Int){
-        if index == self.movies.value.count && page == nextPage {
-            self.page += 1
-            self.requestPopular()
+        if self.isLoading.value == false && self.movies.value.count > 0 {
+            if index == self.movies.value.count && page == nextPage {
+                self.page += 1
+                self.requestPopular()
+            }
+        } else {
+            self.numberOfRows = 0
         }
     }
     
