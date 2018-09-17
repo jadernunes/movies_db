@@ -17,7 +17,7 @@ extension UIViewController {
             
             let labelMessage = UILabel(frame: CGRect(x: errorView.frame.origin.x + 20,
                                                      y: errorView.frame.origin.y,
-                                                     width: errorView.frame.width,
+                                                     width: errorView.frame.width - 10,
                                                      height: errorView.frame.height))
             
             labelMessage.font = UIFont.systemFont(ofSize: 14, weight: .regular)

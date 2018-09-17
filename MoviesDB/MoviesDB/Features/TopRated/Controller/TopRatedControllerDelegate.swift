@@ -11,9 +11,6 @@ import Foundation
 /// TopRatedControllerDelegate protocol to request Model to Api
 protocol TopRatedControllerDelegate  {
     
-    /// Representation of data result
-    typealias TopRatedCompletion = ((_ movies: [Movie], _ page: Int, _ error: ErrorMoviesDB?) -> Void)
-    
     /// Controller initialization
     ///
     /// - Parameter delegate: Optional api protocol reference. You can override it if will be necessary
