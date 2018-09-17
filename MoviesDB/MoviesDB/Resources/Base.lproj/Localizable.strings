@@ -9,3 +9,5 @@
 "messageRequestFail" = "Request fail";
 "messageLoadImagesFail" = "Load images fail";
 "messageLoadDataFail" = "Load data fail";
+"messageLoadTopRatedFail" = "Load Top rated fail";
+"messageLoadGenreListFail" = "Load genres fail";

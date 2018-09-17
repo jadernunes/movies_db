@@ -16,7 +16,7 @@ final class SplashScreenViewModel {
     private var delegate: SplashScreenControllerDelegate
     
     /// Contains the Configuration
-    var configuration: Variable<ErrorMoviesDB?> = Variable<ErrorMoviesDB?>(nil)
+    var errorInitialData: Variable<ErrorMoviesDB?> = Variable<ErrorMoviesDB?>(nil)
     
     /// Control call request if fail
     private var countAttempt = 1
@@ -31,17 +31,17 @@ final class SplashScreenViewModel {
         self.delegate = delegate
     }
     
-    func requestConfiguration(){
-        delegate.requestConfiguration { (config, error) in
+    func requestInitialData(){
+        delegate.requestInitialData { (success, error) in
             self.isRequestFinished = true
             if let _ = error {
                 if self.countAttempt <= 3 {
                     self.countAttempt += 1
-                    self.requestConfiguration()
+                    self.requestInitialData()
                 }
             }
             
-            self.configuration.value = error
+            self.errorInitialData.value = error
         }
     }
     

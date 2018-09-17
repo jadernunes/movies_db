@@ -40,5 +40,8 @@ enum KeysJson: String {
     apiKey = "api_key",
     urlBase = "urlBase",
     config = "config",
-    images = "images"
+    images = "images",
+    results = "results",
+    page = "page",
+    genres = "genres"
 }
