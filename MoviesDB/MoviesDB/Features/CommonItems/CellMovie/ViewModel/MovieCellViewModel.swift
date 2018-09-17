@@ -17,6 +17,7 @@ class MovieCellViewModel {
     var title: Variable<String> = Variable<String>("")
     var genre: Variable<String> = Variable<String>("")
     var date: Variable<String> = Variable<String>("")
+    var voteAvarage: Variable<String> = Variable<String>("")
     var urlPoster: Variable<String> = Variable<String>("")
     
     /// Contains movie data
@@ -27,6 +28,7 @@ class MovieCellViewModel {
             self.title.value = movie.getTitle().value
             self.date.value = movie.getReleaseDate().value.dateToShow()
             self.urlPoster.value = movie.getPosterPath().value
+            self.voteAvarage.value = "\(movie.getVoteAvarage().value)"
             
             movie.getGenreNames { (genres) in
                 guard let genre = genres.first else { return }
