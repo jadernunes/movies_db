@@ -47,7 +47,7 @@ final class TopRatedService: TopRatedServiceDelegate {
                             return completion([], page, ErrorMoviesDB(message: R.string.localizable.messageLoadTopRatedFail()))
                     }
                     
-                    Movie.save(array: results, completion: { (array) in
+                    MovieTopRated.save(array: results, completion: { (array) in
                         completion(array, pageReceived, nil)
                     })
                 } catch {

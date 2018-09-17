@@ -32,8 +32,8 @@ final class SplashScreenController: SplashScreenControllerDelegate {
     //MARK: - Custom methods
     
     func requestInitialData(completion: @escaping InitialDataCompletion){
-        delegateConfiguration.requestConfiguration { (configuration, errorConfig) in
-            self.delegateGenreList.requestGenreList(completion: { (genres, errorGenre) in
+        delegateConfiguration.requestConfiguration { [weak self] (configuration, errorConfig) in
+            self?.delegateGenreList.requestGenreList(completion: { (genres, errorGenre) in
                 let error = errorConfig ?? errorGenre
                 let success = error == nil
                 completion(success, error)

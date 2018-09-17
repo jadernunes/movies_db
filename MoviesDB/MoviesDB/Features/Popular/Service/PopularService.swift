@@ -47,7 +47,7 @@ final class PopularService: PopularServiceDelegate {
                             return completion([], page, ErrorMoviesDB(message: R.string.localizable.messageLoadPopularFail()))
                     }
                     
-                    Movie.save(array: results, completion: { (array) in
+                    MoviePopular.save(array: results, completion: { (array) in
                         completion(array, pageReceived, nil)
                     })
                 } catch {

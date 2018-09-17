@@ -31,8 +31,12 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 4 images.
+  /// This `R.image` struct is generated, and contains static references to 6 images.
   struct image {
+    /// Image `backdropPlaceholder`.
+    static let backdropPlaceholder = Rswift.ImageResource(bundle: R.hostingBundle, name: "backdropPlaceholder")
+    /// Image `iconClose`.
+    static let iconClose = Rswift.ImageResource(bundle: R.hostingBundle, name: "iconClose")
     /// Image `iconPopular`.
     static let iconPopular = Rswift.ImageResource(bundle: R.hostingBundle, name: "iconPopular")
     /// Image `iconTopRated`.
@@ -41,6 +45,16 @@ struct R: Rswift.Validatable {
     static let imageSplashScreen = Rswift.ImageResource(bundle: R.hostingBundle, name: "imageSplashScreen")
     /// Image `posterPlaceholder`.
     static let posterPlaceholder = Rswift.ImageResource(bundle: R.hostingBundle, name: "posterPlaceholder")
+    
+    /// `UIImage(named: "backdropPlaceholder", bundle: ..., traitCollection: ...)`
+    static func backdropPlaceholder(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.backdropPlaceholder, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "iconClose", bundle: ..., traitCollection: ...)`
+    static func iconClose(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.iconClose, compatibleWith: traitCollection)
+    }
     
     /// `UIImage(named: "iconPopular", bundle: ..., traitCollection: ...)`
     static func iconPopular(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
@@ -100,10 +114,12 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 4 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 5 storyboards.
   struct storyboard {
     /// Storyboard `General`.
     static let general = _R.storyboard.general()
+    /// Storyboard `Movie`.
+    static let movie = _R.storyboard.movie()
     /// Storyboard `Popular`.
     static let popular = _R.storyboard.popular()
     /// Storyboard `SplashScreen`.
@@ -114,6 +130,11 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "General", bundle: ...)`
     static func general(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.general)
+    }
+    
+    /// `UIStoryboard(name: "Movie", bundle: ...)`
+    static func movie(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.movie)
     }
     
     /// `UIStoryboard(name: "Popular", bundle: ...)`
@@ -136,16 +157,12 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 6 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 7 localization keys.
     struct localizable {
-      /// Base translation: Load Popular fail
+      /// Base translation: Load Movie detail fail
       /// 
       /// Locales: Base
-      static let messageLoadPopularFail = Rswift.StringResource(key: "messageLoadPopularFail", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
-      /// Base translation: Load Top rated fail
-      /// 
-      /// Locales: Base
-      static let messageLoadTopRatedFail = Rswift.StringResource(key: "messageLoadTopRatedFail", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      static let messageLoadMovieDetailFail = Rswift.StringResource(key: "messageLoadMovieDetailFail", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: Load data fail
       /// 
       /// Locales: Base
@@ -158,23 +175,24 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let messageLoadImagesFail = Rswift.StringResource(key: "messageLoadImagesFail", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: Load popular fail
+      /// 
+      /// Locales: Base
+      static let messageLoadPopularFail = Rswift.StringResource(key: "messageLoadPopularFail", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: Load top rated fail
+      /// 
+      /// Locales: Base
+      static let messageLoadTopRatedFail = Rswift.StringResource(key: "messageLoadTopRatedFail", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: Request fail
       /// 
       /// Locales: Base
       static let messageRequestFail = Rswift.StringResource(key: "messageRequestFail", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       
-      /// Base translation: Load Popular fail
+      /// Base translation: Load Movie detail fail
       /// 
       /// Locales: Base
-      static func messageLoadPopularFail(_: Void = ()) -> String {
-        return NSLocalizedString("messageLoadPopularFail", bundle: R.hostingBundle, value: "Load Popular fail", comment: "")
-      }
-      
-      /// Base translation: Load Top rated fail
-      /// 
-      /// Locales: Base
-      static func messageLoadTopRatedFail(_: Void = ()) -> String {
-        return NSLocalizedString("messageLoadTopRatedFail", bundle: R.hostingBundle, value: "Load Top rated fail", comment: "")
+      static func messageLoadMovieDetailFail(_: Void = ()) -> String {
+        return NSLocalizedString("messageLoadMovieDetailFail", bundle: R.hostingBundle, value: "Load Movie detail fail", comment: "")
       }
       
       /// Base translation: Load data fail
@@ -196,6 +214,20 @@ struct R: Rswift.Validatable {
       /// Locales: Base
       static func messageLoadImagesFail(_: Void = ()) -> String {
         return NSLocalizedString("messageLoadImagesFail", bundle: R.hostingBundle, value: "Load images fail", comment: "")
+      }
+      
+      /// Base translation: Load popular fail
+      /// 
+      /// Locales: Base
+      static func messageLoadPopularFail(_: Void = ()) -> String {
+        return NSLocalizedString("messageLoadPopularFail", bundle: R.hostingBundle, value: "Load popular fail", comment: "")
+      }
+      
+      /// Base translation: Load top rated fail
+      /// 
+      /// Locales: Base
+      static func messageLoadTopRatedFail(_: Void = ()) -> String {
+        return NSLocalizedString("messageLoadTopRatedFail", bundle: R.hostingBundle, value: "Load top rated fail", comment: "")
       }
       
       /// Base translation: Request fail
@@ -266,6 +298,7 @@ struct _R: Rswift.Validatable {
       try popular.validate()
       try general.validate()
       try topRated.validate()
+      try movie.validate()
       try splashScreen.validate()
     }
     
@@ -282,6 +315,23 @@ struct _R: Rswift.Validatable {
         if UIKit.UIImage(named: "iconPopular") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'iconPopular' is used in storyboard 'General', but couldn't be loaded.") }
         if UIKit.UIImage(named: "iconTopRated") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'iconTopRated' is used in storyboard 'General', but couldn't be loaded.") }
         if _R.storyboard.general().homeTabBarController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'homeTabBarController' could not be loaded from storyboard 'General' as 'UIKit.UITabBarController'.") }
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct movie: Rswift.StoryboardResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let movieDetailViewController = StoryboardViewControllerResource<MovieDetailViewController>(identifier: "MovieDetailViewController")
+      let name = "Movie"
+      
+      func movieDetailViewController(_: Void = ()) -> MovieDetailViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: movieDetailViewController)
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "iconClose") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'iconClose' is used in storyboard 'Movie', but couldn't be loaded.") }
+        if _R.storyboard.movie().movieDetailViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'movieDetailViewController' could not be loaded from storyboard 'Movie' as 'MovieDetailViewController'.") }
       }
       
       fileprivate init() {}

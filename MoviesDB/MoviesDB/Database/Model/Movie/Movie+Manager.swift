@@ -21,4 +21,8 @@ extension Movie {
     static func allObjects<T: BaseModel>(completion: @escaping (([T]) -> Void)) {
         getObjects(T.self, completion: completion)
     }
+    
+    static func allObjects<T: BaseModel>(filter: String, completion:@escaping (([T]) -> Void)){
+        getObjects(T.self, filter: filter, completion: completion)
+    }
 }

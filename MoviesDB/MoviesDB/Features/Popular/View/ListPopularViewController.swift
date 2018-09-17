@@ -20,7 +20,12 @@ class ListPopularViewController: UIViewController {
     /// DisposeBag use to control memory
     private var disposeBag = DisposeBag()
     
-    let refreshControl = UIRefreshControl()
+    /// Refresh control to show loading
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(requestFirstPage), for: .valueChanged)
+        return refreshControl
+    }()
     
     //MARK: - Outlets
     
@@ -38,40 +43,80 @@ class ListPopularViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.refreshControl.addTarget(self, action: #selector(self.requestFirstPage), for: .valueChanged)
-        self.collectionViewPopular.addSubview(self.refreshControl)
-        
+        configureUI()
         setupViewModel()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        viewModel.requestFirstPage()
+    }
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        self.collectionViewPopular.reloadData()
+        guard let collectionView = self.collectionViewPopular else { return }
+        collectionView.reloadData()
+        
         super.viewWillTransition(to: size, with: coordinator)
     }
     
     //MARK: - Custom methods
     
+    
+    /// Configure all UI
+    private func configureUI(){
+        //Add refresh controll
+        collectionViewPopular.addSubview(refreshControl)
+        DispatchQueue.main.async {
+            self.refreshControl.beginRefreshing()
+            self.collectionViewPopular.setContentOffset(CGPoint(x: 0.0, y: self.view.safeAreaLayoutGuide.heightAnchor.accessibilityFrame.height - self.refreshControl.frame.size.height), animated: true)
+        }
+    }
+    
     /// Register and configure view model
     private func setupViewModel(){
         
-        viewModel.movies.asObservable().subscribe({ movies  in
+        viewModel.movies.asObservable().subscribe({ [weak self] movies  in
             guard let _ = movies.element  else { return }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
-                self.refreshControl.endRefreshing()
-                self.collectionViewPopular.reloadData()
+                self?.refreshControl.endRefreshing()
+                self?.collectionViewPopular.reloadData()
             })
         }).disposed(by: self.disposeBag)
         
-        viewModel.isLoading.asObservable().subscribe({ isLoading  in
+        viewModel.isLoading.asObservable().subscribe({ [weak self] isLoading  in
             guard let isLoading = isLoading.element  else { return }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
                 if isLoading == false {
-                    self.refreshControl.endRefreshing()
+                    self?.refreshControl.endRefreshing()
                 }
             })
         }).disposed(by: self.disposeBag)
         
-        requestFirstPage()
+        self.viewModel.error
+            .asObservable()
+            .subscribe({ [weak self] object in
+                guard
+                    let errorElement = object.element,
+                    let error = errorElement
+                    else { return }
+                self?.showErrorMesssage(mesage: error.message)
+            })
+            .disposed(by: disposeBag)
+        
+        self.viewModel.isLoadingFirstRequest
+            .asObservable()
+            .subscribe({ [weak self] object in
+                guard let isLoading = object.element, isLoading == true else {
+                    DispatchQueue.main.async {
+                        self?.view.stopLoader()
+                    }
+                    return
+                }
+                
+                self?.view.startLoader()
+            })
+            .disposed(by: disposeBag)
     }
     
     /// Request firs page
@@ -80,8 +125,9 @@ class ListPopularViewController: UIViewController {
         self.viewModel.requestFirstPage()
     }
     
-    private func openMovieDetail(indexPath: IndexPath){
-        //TODO: Implement
+    private func openMovieDetail(index: Int){
+        let movie = viewModel.movies.value[index]
+        viewModel.openMovieDetail(idMovie: movie.getId().value)
     }
     
     private func showCellLoaging(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
@@ -109,7 +155,7 @@ class ListPopularViewController: UIViewController {
 extension ListPopularViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //TODO: Open Detail Movie
+        openMovieDetail(index: indexPath.row)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {

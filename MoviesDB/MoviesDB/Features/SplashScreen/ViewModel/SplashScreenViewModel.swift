@@ -32,16 +32,16 @@ final class SplashScreenViewModel {
     }
     
     func requestInitialData(){
-        delegate.requestInitialData { (success, error) in
-            self.isRequestFinished = true
+        delegate.requestInitialData { [weak self] (success, error) in
+            self?.isRequestFinished = true
             if let _ = error {
-                if self.countAttempt <= 3 {
-                    self.countAttempt += 1
-                    self.requestInitialData()
+                if (self?.countAttempt ?? 0) <= 3 {
+                    self?.countAttempt += 1
+                    self?.requestInitialData()
                 }
             }
             
-            self.errorInitialData.value = error
+            self?.errorInitialData.value = error
         }
     }
     

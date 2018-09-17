@@ -9,7 +9,7 @@
 import Foundation
 
 /// Representation of data result
-typealias PopularCompletion = ((_ movies: [Movie], _ page: Int, _ error: ErrorMoviesDB?) -> Void)
+typealias PopularCompletion = ((_ movies: [MoviePopular], _ page: Int, _ error: ErrorMoviesDB?) -> Void)
 
 protocol PopularServiceDelegate {
     
