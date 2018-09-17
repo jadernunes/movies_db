@@ -18,7 +18,7 @@ final class ListTopRatedViewModel {
     private var delegate: TopRatedControllerDelegate
     
     /// Contains movies data
-    var movies: Variable<[Movie]> = Variable<[Movie]>([])
+    var movies: Variable<[MovieTopRated]> = Variable<[MovieTopRated]>([])
     
     /// Control the request loading status. If TRUE will start the loading and FALSE stop that
     var isLoading: Variable<Bool> = Variable<Bool>(true)
@@ -56,14 +56,20 @@ final class ListTopRatedViewModel {
             isLoadingFirstRequest.value = true
         }
         
-        delegate.requestTopRated(page: page ?? self.page) { [weak self] (movies, pageReceived, errorCustom) in
-            self?.error.value = errorCustom
-            self?.isLoadingFirstRequest.value = false
-            self?.isLoading.value = false
-            self?.nextPage = pageReceived
-            self?.movies.value.append(contentsOf: movies)
-            let countMovies = self?.movies.value.count ?? 0
-            self?.numberOfRows = countMovies == 0 ? 1 : countMovies + 1
+        MovieTopRated.allObjects { [weak self] (movies: [MovieTopRated]) in
+            if self?.nextPage == 0 {
+                self?.movies.value = movies
+            }
+            
+            self?.delegate.requestTopRated(page: page ?? self?.page ?? 0) { [weak self] (movies, pageReceived, errorCustom) in
+                self?.error.value = errorCustom
+                self?.isLoadingFirstRequest.value = false
+                self?.isLoading.value = false
+                self?.nextPage = pageReceived
+                self?.movies.value.append(contentsOf: movies)
+                let countMovies = self?.movies.value.count ?? 0
+                self?.numberOfRows = countMovies == 0 ? 1 : countMovies + 1
+            }
         }
     }
     

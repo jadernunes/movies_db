@@ -18,7 +18,7 @@ final class ListPopularViewModel {
     private var delegate: PopularControllerDelegate
     
     /// Contains movies data
-    var movies: Variable<[Movie]> = Variable<[Movie]>([])
+    var movies: Variable<[MoviePopular]> = Variable<[MoviePopular]>([])
     
     /// Control the request loading status. If TRUE will start the loading and FALSE stop that
     var isLoading: Variable<Bool> = Variable<Bool>(true)
@@ -56,14 +56,20 @@ final class ListPopularViewModel {
             isLoadingFirstRequest.value = true
         }
         
-        delegate.requestPopular(page: page ?? self.page) { [weak self] (movies, pageReceived, errorCustom) in
-            self?.error.value = errorCustom
-            self?.isLoading.value = false
-            self?.isLoadingFirstRequest.value = false
-            self?.nextPage = pageReceived
-            self?.movies.value.append(contentsOf: movies)
-            let countMovies = self?.movies.value.count ?? 0
-            self?.numberOfRows = countMovies == 0 ? 1 : countMovies + 1
+        MoviePopular.allObjects { [weak self] (movies: [MoviePopular]) in
+            if self?.nextPage == 0 {
+                self?.movies.value = movies
+            }
+            
+            self?.delegate.requestPopular(page: page ?? self?.page ?? 0) { [weak self] (movies, pageReceived, errorCustom) in
+                self?.error.value = errorCustom
+                self?.isLoading.value = false
+                self?.isLoadingFirstRequest.value = false
+                self?.nextPage = pageReceived
+                self?.movies.value.append(contentsOf: movies)
+                let countMovies = self?.movies.value.count ?? 0
+                self?.numberOfRows = countMovies == 0 ? 1 : countMovies + 1
+            }
         }
     }
     
