@@ -38,6 +38,10 @@ let tagViewLoading: Int = {
     return 99999
 }()
 
+let basePrimaryKeyModel: String = {
+    return "id"
+}()
+
 enum KeysJson: String {
     case
     statusMessage = "status_message",

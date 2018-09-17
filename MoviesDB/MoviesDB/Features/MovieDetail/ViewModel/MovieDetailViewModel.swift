@@ -59,19 +59,38 @@ class MovieDetailViewModel {
     func requestData(idMovie: Int){
         self.isLoading.value = true
         
+        Movie.allObjects(filter: "\(Movie.primaryKey() ?? basePrimaryKeyModel) = \(idMovie)") { [weak self] (movies: [Movie]) in
+            guard let movie = movies.first else {
+                self?.requestMovieFromServer(idMovie: idMovie)
+                return
+            }
+            
+            self?.populateData(movie: movie)
+            self?.requestMovieFromServer(idMovie: idMovie)
+        }
+    }
+    
+    /// Request movie from server
+    private func requestMovieFromServer(idMovie: Int){
         self.delegate.requestMovieDetail(idMovie: idMovie) { [weak self] (movie, errorCustom) in
             self?.isLoading.value = false
             self?.error.value = errorCustom
             guard let movie = movie else { return }
-            
-            self?.backdropPath.value = movie.getBackdropPath().value ?? ""
-            self?.posterPath.value = movie.getPosterPath().value
-            self?.name.value = movie.getTitle().value
-            self?.releaseDate.value = movie.getReleaseDate().value.dateToShow()
-            self?.voteAverage.value = movie.getVoteAvarage().value.description
-            self?.overview.value = movie.getOverview().value
-            self?.configureListGenre(movie: movie)
+            self?.populateData(movie: movie)
         }
+    }
+    
+    /// Populate variables data
+    ///
+    /// - Parameter movie: Movie
+    private func populateData(movie: Movie){
+        self.backdropPath.value = movie.getBackdropPath().value ?? ""
+        self.posterPath.value = movie.getPosterPath().value
+        self.name.value = movie.getTitle().value
+        self.releaseDate.value = movie.getReleaseDate().value.dateToShow()
+        self.voteAverage.value = movie.getVoteAvarage().value.description
+        self.overview.value = movie.getOverview().value
+        self.configureListGenre(movie: movie)
     }
     
     /// Configure list of genre

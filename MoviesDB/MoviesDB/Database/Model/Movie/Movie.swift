@@ -27,7 +27,7 @@ class Movie: BaseModel, ModelProtocol {
     private var genre_ids = List<Int>()
     
     open override static func primaryKey() -> String? {
-        return "id"
+        return basePrimaryKeyModel
     }
     
     //MARK: - Custom methods

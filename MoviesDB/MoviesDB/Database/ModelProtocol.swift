@@ -14,6 +14,7 @@ protocol ModelProtocol {
     static func save<T: BaseModel>(array: [[String: Any]], completion: @escaping (([T]) -> Void))
     static func save<T: BaseModel>(data: [String: Any], completion: @escaping ((T?) -> Void))
     static func allObjects<T: BaseModel>(completion: @escaping (([T]) -> Void))
+    static func allObjects<T: BaseModel>(filter: String, completion:@escaping (([T]) -> Void))
 }
 
 
@@ -22,4 +23,5 @@ extension ModelProtocol {
     static func save<T: BaseModel>(array: [[String: Any]], completion: @escaping (([T]) -> Void)){}
     static func save<T: BaseModel>(data: [String: Any], completion: @escaping ((T?) -> Void)){}
     static func allObjects<T: BaseModel>(completion: @escaping (([T]) -> Void)){}
+    static func allObjects<T: BaseModel>(filter: String, completion:@escaping (([T]) -> Void)){}
 }
