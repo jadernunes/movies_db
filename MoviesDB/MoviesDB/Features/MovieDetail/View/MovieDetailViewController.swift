@@ -114,6 +114,20 @@ class MovieDetailViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
+        self.viewModel.isLoading
+            .asObservable()
+            .subscribe({ object in
+                guard let isLoading = object.element, isLoading == true else {
+                    DispatchQueue.main.async {
+                        self.view.stopLoader()
+                    }
+                    return
+                }
+                
+                self.view.startLoader()
+            })
+            .disposed(by: disposeBag)
+        
         requestMovieDetail()
     }
     

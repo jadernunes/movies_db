@@ -34,6 +34,10 @@ let apiKey: String = {
     return apiKey
 }()
 
+let tagViewLoading: Int = {
+    return 99999
+}()
+
 enum KeysJson: String {
     case
     statusMessage = "status_message",

@@ -50,6 +50,7 @@
 		2710807A214F62AA000FCA58 /* RouterTopRated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27108079214F62AA000FCA58 /* RouterTopRated.swift */; };
 		2710807C214F6355000FCA58 /* RouterPopular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2710807B214F6355000FCA58 /* RouterPopular.swift */; };
 		2710807E214F639D000FCA58 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2710807D214F639D000FCA58 /* Utils.swift */; };
+		27108080214F6F38000FCA58 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2710807F214F6F38000FCA58 /* UIView+Extension.swift */; };
 		2787B1BC214DB4B4006E180C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2787B1BB214DB4B4006E180C /* AppDelegate.swift */; };
 		2787B1C1214DB4B4006E180C /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2787B1BF214DB4B4006E180C /* SplashScreen.storyboard */; };
 		2787B1C3214DB4B5006E180C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2787B1C2214DB4B5006E180C /* Assets.xcassets */; };
@@ -125,6 +126,7 @@
 		27108079214F62AA000FCA58 /* RouterTopRated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterTopRated.swift; sourceTree = "<group>"; };
 		2710807B214F6355000FCA58 /* RouterPopular.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterPopular.swift; sourceTree = "<group>"; };
 		2710807D214F639D000FCA58 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		2710807F214F6F38000FCA58 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		2787B1B8214DB4B4006E180C /* MoviesDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2787B1BB214DB4B4006E180C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2787B1C0214DB4B4006E180C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SplashScreen.storyboard; sourceTree = "<group>"; };
@@ -582,6 +584,7 @@
 				2787B20A214EC788006E180C /* UIViewController+Extension.swift */,
 				2710803A214F1CD3000FCA58 /* String+Extension.swift */,
 				2710803C214F1D8D000FCA58 /* UIImageView+Extension.swift */,
+				2710807F214F6F38000FCA58 /* UIView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -836,6 +839,7 @@
 				27108071214F5B34000FCA58 /* MovieDetailControllerDelegate.swift in Sources */,
 				2787B1BC214DB4B4006E180C /* AppDelegate.swift in Sources */,
 				2787B1F2214E9BA8006E180C /* SplashScreenViewModel.swift in Sources */,
+				27108080214F6F38000FCA58 /* UIView+Extension.swift in Sources */,
 				2787B202214EABE5006E180C /* ApiRequestDelegate.swift in Sources */,
 				27108022214F0A83000FCA58 /* GenreList+Manager.swift in Sources */,
 				2710804D214F385A000FCA58 /* ConfigurationServiceDelegate.swift in Sources */,

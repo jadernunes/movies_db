@@ -23,6 +23,9 @@ final class ListTopRatedViewModel {
     /// Control the request loading status. If TRUE will start the loading and FALSE stop that
     var isLoading: Variable<Bool> = Variable<Bool>(true)
     
+    /// Control the first request loading status. If TRUE will start the loading and FALSE stop that
+    var isLoadingFirstRequest: Variable<Bool> = Variable<Bool>(true)
+    
     /// Number of movies
     var numberOfRows = 0
     
@@ -48,8 +51,14 @@ final class ListTopRatedViewModel {
     
     /// Request new updated data to View Model and then it'll update
     func requestTopRated(page: Int? = nil){
+        self.isLoading.value = true
+        if nextPage == 0 {
+            isLoadingFirstRequest.value = true
+        }
+        
         delegate.requestTopRated(page: page ?? self.page) { [weak self] (movies, pageReceived, errorCustom) in
             self?.error.value = errorCustom
+            self?.isLoadingFirstRequest.value = false
             self?.isLoading.value = false
             self?.nextPage = pageReceived
             self?.movies.value.append(contentsOf: movies)

@@ -84,6 +84,20 @@ class ListPopularViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
+        self.viewModel.isLoadingFirstRequest
+            .asObservable()
+            .subscribe({ [weak self] object in
+                guard let isLoading = object.element, isLoading == true else {
+                    DispatchQueue.main.async {
+                        self?.view.stopLoader()
+                    }
+                    return
+                }
+                
+                self?.view.startLoader()
+            })
+            .disposed(by: disposeBag)
+        
         requestFirstPage()
     }
     
