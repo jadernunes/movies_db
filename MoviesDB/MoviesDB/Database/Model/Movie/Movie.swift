@@ -16,7 +16,7 @@ class Movie: BaseModel, ModelProtocol {
     //MARK: - Attributes
     
     @objc private dynamic var id: Int = 0
-    private var vote_count: Int? = 0
+    @objc private dynamic var vote_average: Double = 0.0
     @objc private dynamic var title: String? = ""
     @objc private dynamic var poster_path: String? = ""
     @objc private dynamic var original_language: String? = ""
@@ -36,9 +36,8 @@ class Movie: BaseModel, ModelProtocol {
         return Variable<Int>(id)
     }
     
-    func getVoteCount() -> Variable<Int> {
-        guard let vote_count = vote_count else { return Variable<Int>(0) }
-        return Variable<Int>(vote_count)
+    func getVoteAvarage() -> Variable<Double> {
+        return Variable<Double>(vote_average)
     }
     
     func getTitle() -> Variable<String> {
