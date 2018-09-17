@@ -31,14 +31,21 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 3 images.
+  /// This `R.image` struct is generated, and contains static references to 4 images.
   struct image {
+    /// Image `iconPopular`.
+    static let iconPopular = Rswift.ImageResource(bundle: R.hostingBundle, name: "iconPopular")
     /// Image `iconTopRated`.
     static let iconTopRated = Rswift.ImageResource(bundle: R.hostingBundle, name: "iconTopRated")
     /// Image `imageSplashScreen`.
     static let imageSplashScreen = Rswift.ImageResource(bundle: R.hostingBundle, name: "imageSplashScreen")
     /// Image `posterPlaceholder`.
     static let posterPlaceholder = Rswift.ImageResource(bundle: R.hostingBundle, name: "posterPlaceholder")
+    
+    /// `UIImage(named: "iconPopular", bundle: ..., traitCollection: ...)`
+    static func iconPopular(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.iconPopular, compatibleWith: traitCollection)
+    }
     
     /// `UIImage(named: "iconTopRated", bundle: ..., traitCollection: ...)`
     static func iconTopRated(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
@@ -129,8 +136,12 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 5 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 6 localization keys.
     struct localizable {
+      /// Base translation: Load Popular fail
+      /// 
+      /// Locales: Base
+      static let messageLoadPopularFail = Rswift.StringResource(key: "messageLoadPopularFail", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: Load Top rated fail
       /// 
       /// Locales: Base
@@ -151,6 +162,13 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let messageRequestFail = Rswift.StringResource(key: "messageRequestFail", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      
+      /// Base translation: Load Popular fail
+      /// 
+      /// Locales: Base
+      static func messageLoadPopularFail(_: Void = ()) -> String {
+        return NSLocalizedString("messageLoadPopularFail", bundle: R.hostingBundle, value: "Load Popular fail", comment: "")
+      }
       
       /// Base translation: Load Top rated fail
       /// 
@@ -245,6 +263,7 @@ struct _R: Rswift.Validatable {
   
   struct storyboard: Rswift.Validatable {
     static func validate() throws {
+      try popular.validate()
       try general.validate()
       try topRated.validate()
       try splashScreen.validate()
@@ -260,17 +279,28 @@ struct _R: Rswift.Validatable {
       }
       
       static func validate() throws {
+        if UIKit.UIImage(named: "iconPopular") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'iconPopular' is used in storyboard 'General', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "iconTopRated") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'iconTopRated' is used in storyboard 'General', but couldn't be loaded.") }
         if _R.storyboard.general().homeTabBarController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'homeTabBarController' could not be loaded from storyboard 'General' as 'UIKit.UITabBarController'.") }
       }
       
       fileprivate init() {}
     }
     
-    struct popular: Rswift.StoryboardResourceWithInitialControllerType {
+    struct popular: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
       typealias InitialController = UIKit.UINavigationController
       
       let bundle = R.hostingBundle
+      let listPopularViewController = StoryboardViewControllerResource<ListPopularViewController>(identifier: "ListPopularViewController")
       let name = "Popular"
+      
+      func listPopularViewController(_: Void = ()) -> ListPopularViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: listPopularViewController)
+      }
+      
+      static func validate() throws {
+        if _R.storyboard.popular().listPopularViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'listPopularViewController' could not be loaded from storyboard 'Popular' as 'ListPopularViewController'.") }
+      }
       
       fileprivate init() {}
     }

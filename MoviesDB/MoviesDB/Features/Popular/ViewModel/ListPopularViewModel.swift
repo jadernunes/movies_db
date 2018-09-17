@@ -1,0 +1,78 @@
+//
+//  ListPopularViewModel.swift
+//  MoviesDB
+//
+//  Created by Jader Nunes on 2018-09-16.
+//  Copyright © 2018 Jader Nunes. All rights reserved.
+//
+
+import Foundation
+import RxSwift
+import RxCocoa
+
+final class ListPopularViewModel {
+    
+    //MARK: - Variables
+    
+    /// Api protocol reference
+    private var delegate: PopularControllerDelegate
+    
+    /// Contains movies data
+    var movies: Variable<[Movie]> = Variable<[Movie]>([])
+    
+    /// Control the request loading status. If TRUE will start the loading and FALSE stop that
+    var isLoading: Variable<Bool> = Variable<Bool>(true)
+    
+    /// Number of movies
+    var numberOfRows = 0
+    
+    /// Current page
+    private var page = 1
+    
+    /// Next page
+    private var nextPage = 0
+    
+    //MARK: - Life cycle
+    
+    /// Initialize the ViewModel with a delegate if it'll be necessary
+    ///
+    /// - Parameter delegate: Optional Controller protocol reference. You can override it if will be necessary
+    init(delegate: PopularControllerDelegate = PopularController()) {
+        self.delegate = delegate
+    }
+    
+    //MARK: - Custom methods
+    
+    /// Request new updated data to View Model and then it'll update
+    func requestPopular(page: Int? = nil){
+        delegate.requestPopular(page: page ?? self.page) { [weak self] (movies, pageReceived, errorCustom) in
+            self?.isLoading.value = false
+            self?.nextPage = pageReceived
+            self?.movies.value.append(contentsOf: movies)
+            let countMovies = self?.movies.value.count ?? 0
+            self?.numberOfRows = countMovies == 0 ? 1 : countMovies + 1
+        }
+    }
+    
+    /// Request new data based on current page
+    ///
+    /// - Parameter indexPath: indexPath of the cell
+    func requestMoreMovies(index: Int){
+        if index == self.movies.value.count && page == nextPage {
+            self.page += 1
+            self.requestPopular()
+        }
+    }
+    
+    /// Request firstPage
+    func requestFirstPage(){
+        self.isLoading.value = true
+        if self.movies.value.count == 0 {
+            self.requestPopular(page: 1)
+        } else {
+            self.isLoading.value = false
+        }
+    }
+    
+    
+}

@@ -50,6 +50,7 @@
         <!--Top Rated-->
         <scene sceneID="94l-fE-oF4">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AWf-3T-XVW" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController title="Top Rated" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="yV4-hY-fEY" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -64,7 +65,6 @@
                         <segue destination="lCr-hu-lOq" kind="relationship" relationship="rootViewController" id="Gtw-1u-dKC"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AWf-3T-XVW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="72.799999999999997" y="277.51124437781112"/>
         </scene>

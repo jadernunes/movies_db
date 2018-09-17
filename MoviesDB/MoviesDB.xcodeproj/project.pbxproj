@@ -34,6 +34,12 @@
 		2710804D214F385A000FCA58 /* ConfigurationServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2710804C214F385A000FCA58 /* ConfigurationServiceDelegate.swift */; };
 		2710804F214F395B000FCA58 /* GenreListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2710804E214F395B000FCA58 /* GenreListService.swift */; };
 		27108051214F3966000FCA58 /* GenreListServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27108050214F3966000FCA58 /* GenreListServiceDelegate.swift */; };
+		27108057214F4C14000FCA58 /* PopularServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27108056214F4C14000FCA58 /* PopularServiceDelegate.swift */; };
+		27108059214F4C1F000FCA58 /* PopularService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27108058214F4C1F000FCA58 /* PopularService.swift */; };
+		2710805B214F4D07000FCA58 /* PopularController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2710805A214F4D07000FCA58 /* PopularController.swift */; };
+		2710805D214F4D14000FCA58 /* PopularControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2710805C214F4D14000FCA58 /* PopularControllerDelegate.swift */; };
+		2710805F214F4D91000FCA58 /* ListPopularViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2710805E214F4D91000FCA58 /* ListPopularViewModel.swift */; };
+		27108061214F4DE9000FCA58 /* ListPopularViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27108060214F4DE9000FCA58 /* ListPopularViewController.swift */; };
 		2787B1BC214DB4B4006E180C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2787B1BB214DB4B4006E180C /* AppDelegate.swift */; };
 		2787B1C1214DB4B4006E180C /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2787B1BF214DB4B4006E180C /* SplashScreen.storyboard */; };
 		2787B1C3214DB4B5006E180C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2787B1C2214DB4B5006E180C /* Assets.xcassets */; };
@@ -93,6 +99,12 @@
 		2710804C214F385A000FCA58 /* ConfigurationServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationServiceDelegate.swift; sourceTree = "<group>"; };
 		2710804E214F395B000FCA58 /* GenreListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreListService.swift; sourceTree = "<group>"; };
 		27108050214F3966000FCA58 /* GenreListServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreListServiceDelegate.swift; sourceTree = "<group>"; };
+		27108056214F4C14000FCA58 /* PopularServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularServiceDelegate.swift; sourceTree = "<group>"; };
+		27108058214F4C1F000FCA58 /* PopularService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularService.swift; sourceTree = "<group>"; };
+		2710805A214F4D07000FCA58 /* PopularController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularController.swift; sourceTree = "<group>"; };
+		2710805C214F4D14000FCA58 /* PopularControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularControllerDelegate.swift; sourceTree = "<group>"; };
+		2710805E214F4D91000FCA58 /* ListPopularViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPopularViewModel.swift; sourceTree = "<group>"; };
+		27108060214F4DE9000FCA58 /* ListPopularViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPopularViewController.swift; sourceTree = "<group>"; };
 		2787B1B8214DB4B4006E180C /* MoviesDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2787B1BB214DB4B4006E180C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2787B1C0214DB4B4006E180C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SplashScreen.storyboard; sourceTree = "<group>"; };
@@ -167,7 +179,10 @@
 		27108011214EF646000FCA58 /* Popular */ = {
 			isa = PBXGroup;
 			children = (
-				2710800F214EF63F000FCA58 /* Popular.storyboard */,
+				27108055214F4BE0000FCA58 /* View */,
+				27108054214F4BDA000FCA58 /* ViewModel */,
+				27108053214F4BC7000FCA58 /* Controller */,
+				27108052214F4BB7000FCA58 /* Service */,
 			);
 			path = Popular;
 			sourceTree = "<group>";
@@ -176,7 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				2710800C214EF5DF000FCA58 /* TopRated.storyboard */,
-				2710802D214F121D000FCA58 /* ListTopRated */,
+				2710802E214F125A000FCA58 /* ListTopRatedViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -233,14 +248,6 @@
 				27108021214F0A83000FCA58 /* GenreList+Manager.swift */,
 			);
 			path = GenreList;
-			sourceTree = "<group>";
-		};
-		2710802D214F121D000FCA58 /* ListTopRated */ = {
-			isa = PBXGroup;
-			children = (
-				2710802E214F125A000FCA58 /* ListTopRatedViewController.swift */,
-			);
-			path = ListTopRated;
 			sourceTree = "<group>";
 		};
 		27108030214F17A5000FCA58 /* CommonItems */ = {
@@ -320,6 +327,41 @@
 				27108050214F3966000FCA58 /* GenreListServiceDelegate.swift */,
 			);
 			path = GenreList;
+			sourceTree = "<group>";
+		};
+		27108052214F4BB7000FCA58 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				27108058214F4C1F000FCA58 /* PopularService.swift */,
+				27108056214F4C14000FCA58 /* PopularServiceDelegate.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		27108053214F4BC7000FCA58 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2710805A214F4D07000FCA58 /* PopularController.swift */,
+				2710805C214F4D14000FCA58 /* PopularControllerDelegate.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		27108054214F4BDA000FCA58 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2710805E214F4D91000FCA58 /* ListPopularViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		27108055214F4BE0000FCA58 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2710800F214EF63F000FCA58 /* Popular.storyboard */,
+				27108060214F4DE9000FCA58 /* ListPopularViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		2787B1AF214DB4B4006E180C = {
@@ -715,6 +757,7 @@
 				2787B1E2214DEE73006E180C /* SplashScreenViewController.swift in Sources */,
 				2710802C214F0FF8000FCA58 /* ListTopRatedViewModel.swift in Sources */,
 				27108013214EF71F000FCA58 /* RouterSplashScreen.swift in Sources */,
+				27108061214F4DE9000FCA58 /* ListPopularViewController.swift in Sources */,
 				2787B20B214EC788006E180C /* UIViewController+Extension.swift in Sources */,
 				2787B1E7214DEF32006E180C /* Configuration.swift in Sources */,
 				2787B1BC214DB4B4006E180C /* AppDelegate.swift in Sources */,
@@ -734,8 +777,10 @@
 				2787B206214EB08E006E180C /* SplashScreenController.swift in Sources */,
 				2710801C214F088F000FCA58 /* Movie+Manager.swift in Sources */,
 				2710801A214F0871000FCA58 /* Movie.swift in Sources */,
+				27108059214F4C1F000FCA58 /* PopularService.swift in Sources */,
 				2787B204214EAE47006E180C /* ErrorMoviesDB.swift in Sources */,
 				2710804B214F3851000FCA58 /* ConfigurationService.swift in Sources */,
+				27108057214F4C14000FCA58 /* PopularServiceDelegate.swift in Sources */,
 				27108028214F0ED9000FCA58 /* TopRatedController.swift in Sources */,
 				2710802A214F0EE2000FCA58 /* TopRatedControllerDelegate.swift in Sources */,
 				2787B1F0214DF472006E180C /* Configuration+Manager.swift in Sources */,
@@ -743,8 +788,11 @@
 				27108024214F0B87000FCA58 /* TopRatedService.swift in Sources */,
 				2787B1FE214EAB3A006E180C /* ApiRequest.swift in Sources */,
 				27108035214F192E000FCA58 /* MovieCollectionViewCell.swift in Sources */,
+				2710805D214F4D14000FCA58 /* PopularControllerDelegate.swift in Sources */,
 				2787B1E9214DEF5D006E180C /* ModelProtocol.swift in Sources */,
 				2787B200214EAB7C006E180C /* Constants.swift in Sources */,
+				2710805B214F4D07000FCA58 /* PopularController.swift in Sources */,
+				2710805F214F4D91000FCA58 /* ListPopularViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
