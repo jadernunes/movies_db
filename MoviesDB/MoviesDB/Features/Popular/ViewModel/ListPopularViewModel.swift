@@ -50,7 +50,7 @@ final class ListPopularViewModel {
     //MARK: - Custom methods
     
     /// Request new updated data to View Model and then it'll update
-    func requestPopular(page: Int? = nil){
+    func requestPopular(page: Int? = nil, completion:(() -> Void)? = nil){
         self.numberOfRows = 0
         self.isLoading.value = true
         if nextPage == 0 {
@@ -73,6 +73,7 @@ final class ListPopularViewModel {
                 self?.nextPage = pageReceived
                 let countMovies = self?.movies.value.count ?? 0
                 self?.numberOfRows = countMovies == 0 ? 1 : countMovies + 1
+                completion?()
             }
         }
     }

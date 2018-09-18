@@ -50,4 +50,13 @@ class SplashScreenViewController: UIViewController {
     private func requestInitialData(){
         viewModel.requestInitialData()
     }
+    
+    //MARK: - Used to unit test
+    
+    /// Verify if exist error or not
+    ///
+    /// - Returns: Bool
+    func hasErrorInitalData() -> Bool {
+        return viewModel.errorInitialData.value != nil
+    }
 }

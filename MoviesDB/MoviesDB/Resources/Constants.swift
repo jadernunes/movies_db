@@ -18,7 +18,7 @@ private let config: [String: Any]? = {
     return dicConfig
 }()
 
-let urlbase: String = {
+var urlbase: String = {
     guard
         let urlBase = config?[KeysJson.urlBase.rawValue] as? String
         else { return "" }
@@ -26,7 +26,7 @@ let urlbase: String = {
     return urlBase
 }()
 
-let apiKey: String = {
+var apiKey: String = {
     guard
         let apiKey = config?[KeysJson.apiKey.rawValue] as? String
         else { return "" }

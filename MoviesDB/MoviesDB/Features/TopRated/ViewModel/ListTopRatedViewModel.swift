@@ -50,7 +50,7 @@ final class ListTopRatedViewModel {
     //MARK: - Custom methods
     
     /// Request new updated data to View Model and then it'll update
-    func requestTopRated(page: Int? = nil){
+    func requestTopRated(page: Int? = nil, completion:(() -> Void)? = nil){
         self.isLoading.value = true
         if nextPage == 0 {
             isLoadingFirstRequest.value = true
@@ -72,6 +72,7 @@ final class ListTopRatedViewModel {
                 self?.nextPage = pageReceived
                 let countMovies = self?.movies.value.count ?? 0
                 self?.numberOfRows = countMovies == 0 ? 1 : countMovies + 1
+                completion?()
             }
         }
     }
