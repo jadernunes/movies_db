@@ -56,10 +56,10 @@ class MovieDetailViewController: UIViewController {
             labelVoteAverage.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         }
     }
-    @IBOutlet weak var textViewOverview: UITextView!{
+    @IBOutlet weak var labelOverview: UILabel!{
         didSet{
-            textViewOverview.textColor = UIColor.subInformation()
-            textViewOverview.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+            labelOverview.textColor = UIColor.subInformation()
+            labelOverview.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         }
     }
     @IBOutlet weak var imageViewPoster: UIImageView!{
@@ -130,7 +130,7 @@ class MovieDetailViewController: UIViewController {
             .disposed(by: self.disposeBag)
         
         self.viewModel.overview.asObservable()
-            .bind(to: self.textViewOverview.rx.text)
+            .bind(to: self.labelOverview.rx.text)
             .disposed(by: self.disposeBag)
         
         self.viewModel.error
