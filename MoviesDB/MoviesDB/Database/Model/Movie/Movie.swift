@@ -24,7 +24,7 @@ class Movie: BaseModel, ModelProtocol {
     private var adult: Bool? = false
     @objc private dynamic var overview: String? = ""
     @objc private dynamic var release_date: String? = ""
-    private var genre_ids = List<Int>()
+    private var genres = List<GenreList>()
     
     open override static func primaryKey() -> String? {
         return basePrimaryKeyModel
@@ -75,19 +75,14 @@ class Movie: BaseModel, ModelProtocol {
         return Variable<String>(release_date)
     }
     
-    func getGenreIds() -> Variable<[Int]> {
-        return Variable<[Int]>(Array(genre_ids))
-    }
-    
     func getGenreNames(completion: @escaping (([String]) -> Void)) {
         var listGenres: [String] = []
-        GenreList.allObjects(completion: { (genres) in
-            self.genre_ids.forEach({ (idGenre) in
-                if let name = genres.filter({ $0.getId().value == idGenre }).first?.getName().value {
-                    listGenres.append(name)
-                }
-            })
-            completion(listGenres)
+        self.genres.forEach({ (genre) in
+            let name = genre.getName().value
+            if  name.count > 0 {
+                listGenres.append(name)
+            }
         })
+        completion(listGenres)
     }
 }

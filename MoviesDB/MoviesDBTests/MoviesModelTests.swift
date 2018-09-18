@@ -70,7 +70,6 @@ class MoviesModelTests: XCTestCase {
         XCTAssertEqual(movie.isAdult().value, false)
         XCTAssertEqual(movie.getOverview().value, "e")
         XCTAssertEqual(movie.getReleaseDate().value, "f")
-        XCTAssertEqual(movie.getGenreIds().value.count, 4)
     }
     
     func testMovieTopRatedValues(){

@@ -31,6 +31,7 @@ class ListTopRatedViewController: UIViewController {
     
     @IBOutlet weak var collectionViewTopRated: UICollectionView!{
         didSet {
+            collectionViewTopRated.backgroundColor = UIColor.base()
             collectionViewTopRated.delegate = self
             collectionViewTopRated.dataSource = self
             collectionViewTopRated.register(R.nib.movieCollectionViewCell(), forCellWithReuseIdentifier: R.nib.movieCollectionViewCell.identifier)
@@ -63,6 +64,8 @@ class ListTopRatedViewController: UIViewController {
     
     /// Configure all UI
     private func configureUI(){
+        self.view.backgroundColor = UIColor.base()
+        
         //Add refresh controll
         collectionViewTopRated.addSubview(refreshControl)
         DispatchQueue.main.async {

@@ -31,6 +31,7 @@ class ListPopularViewController: UIViewController {
     
     @IBOutlet weak var collectionViewPopular: UICollectionView!{
         didSet {
+            collectionViewPopular.backgroundColor = UIColor.base()
             collectionViewPopular.delegate = self
             collectionViewPopular.dataSource = self
             collectionViewPopular.register(R.nib.movieCollectionViewCell(), forCellWithReuseIdentifier: R.nib.movieCollectionViewCell.identifier)
@@ -64,6 +65,8 @@ class ListPopularViewController: UIViewController {
     
     /// Configure all UI
     private func configureUI(){
+        self.view.backgroundColor = UIColor.base()
+        
         //Add refresh controll
         collectionViewPopular.addSubview(refreshControl)
         DispatchQueue.main.async {
