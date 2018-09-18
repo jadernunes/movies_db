@@ -19,7 +19,6 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gJO-DR-ooW">
                                 <rect key="frame" x="0.0" y="44" width="375" height="768"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="iML-AJ-jVX">
                                     <size key="itemSize" width="136" height="222"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -49,7 +48,6 @@
         <!--Popular-->
         <scene sceneID="yJb-MN-KQu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HOX-ww-UzF" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController title="Popular" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="0ZN-No-VHk" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -61,6 +59,7 @@
                         <segue destination="Kmu-9S-X9I" kind="relationship" relationship="rootViewController" id="IVB-Bo-LLo"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HOX-ww-UzF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="501.60000000000002" y="-175.86206896551727"/>
         </scene>

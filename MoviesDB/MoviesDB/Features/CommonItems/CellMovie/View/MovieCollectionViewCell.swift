@@ -14,10 +14,30 @@ class MovieCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Outlets
     
-    @IBOutlet weak var labelTitle: UILabel!
-    @IBOutlet weak var labelGenre: UILabel!
-    @IBOutlet weak var labelDate: UILabel!
-    @IBOutlet weak var labelVoteAverage: UILabel!
+    @IBOutlet weak var labelTitle: UILabel!{
+        didSet{
+            labelTitle.textColor = UIColor.title()
+            labelTitle.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        }
+    }
+    @IBOutlet weak var labelGenre: UILabel!{
+        didSet{
+            labelGenre.textColor = UIColor.subInformation()
+            labelGenre.font = UIFont.systemFont(ofSize: 10, weight: .regular)
+        }
+    }
+    @IBOutlet weak var labelDate: UILabel!{
+        didSet{
+            labelDate.textColor = UIColor.subInformation()
+            labelDate.font = UIFont.systemFont(ofSize: 10, weight: .regular)
+        }
+    }
+    @IBOutlet weak var labelVoteAverage: UILabel!{
+        didSet{
+            labelVoteAverage.textColor = UIColor.subInformation()
+            labelVoteAverage.font = UIFont.systemFont(ofSize: 10, weight: .regular)
+        }
+    }
     @IBOutlet weak var imageViewPoster: UIImageView!{
         didSet{
             imageViewPoster.layer.cornerRadius = 15

@@ -26,12 +26,42 @@ class MovieDetailViewController: UIViewController {
     
     //MARK: - Outlets
     
+    @IBOutlet weak var viewShadow: UIView!{
+        didSet{
+            viewShadow.backgroundColor = UIColor.base().withAlphaComponent(0.3)
+        }
+    }
     @IBOutlet weak var imageViewBackdrop: UIImageView!
-    @IBOutlet weak var labelName: UILabel!
-    @IBOutlet weak var labelGenre: UILabel!
-    @IBOutlet weak var labelReleaseDate: UILabel!
-    @IBOutlet weak var labelVoteAverage: UILabel!
-    @IBOutlet weak var textViewOverview: UITextView!
+    @IBOutlet weak var labelName: UILabel!{
+        didSet{
+            labelName.textColor = UIColor.title()
+            labelName.font = UIFont.systemFont(ofSize: 22, weight: .bold)
+        }
+    }
+    @IBOutlet weak var labelGenre: UILabel!{
+        didSet{
+            labelGenre.textColor = UIColor.subInformation().withAlphaComponent(0.8)
+            labelGenre.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        }
+    }
+    @IBOutlet weak var labelReleaseDate: UILabel!{
+        didSet{
+            labelReleaseDate.textColor = UIColor.subInformation().withAlphaComponent(0.8)
+            labelReleaseDate.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        }
+    }
+    @IBOutlet weak var labelVoteAverage: UILabel!{
+        didSet{
+            labelVoteAverage.textColor = UIColor.subInformation()
+            labelVoteAverage.font = UIFont.systemFont(ofSize: 22, weight: .bold)
+        }
+    }
+    @IBOutlet weak var textViewOverview: UITextView!{
+        didSet{
+            textViewOverview.textColor = UIColor.subInformation()
+            textViewOverview.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        }
+    }
     @IBOutlet weak var imageViewPoster: UIImageView!{
         didSet{
             imageViewPoster.layer.cornerRadius = 15
