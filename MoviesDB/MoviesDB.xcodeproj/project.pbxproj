@@ -653,6 +653,7 @@
 				2787B1B5214DB4B4006E180C /* Frameworks */,
 				2787B1B6214DB4B4006E180C /* Resources */,
 				31CF4EBC46FDB431DC8B629B /* [CP] Embed Pods Frameworks */,
+				278A4E722151A8F2009DC11A /* Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -780,6 +781,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT\"";
+		};
+		278A4E722151A8F2009DC11A /* Crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Crashlytics;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 7b5476ce875c85d7771947632cd43538ba6cb4ae 2e10ef9d92d61a3717b36f283c364db38d3ec2523a9f963ca23ad1016aa0ef53";
 		};
 		31CF4EBC46FDB431DC8B629B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
