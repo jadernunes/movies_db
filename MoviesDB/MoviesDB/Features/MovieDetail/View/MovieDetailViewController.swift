@@ -31,7 +31,11 @@ class MovieDetailViewController: UIViewController {
             viewShadow.backgroundColor = UIColor.base().withAlphaComponent(0.3)
         }
     }
-    @IBOutlet weak var imageViewBackdrop: UIImageView!
+    @IBOutlet weak var imageViewBackdrop: UIImageView!{
+        didSet{
+            imageViewBackdrop.layer.masksToBounds = true
+        }
+    }
     @IBOutlet weak var labelName: UILabel!{
         didSet{
             labelName.textColor = UIColor.title()
