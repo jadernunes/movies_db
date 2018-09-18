@@ -54,9 +54,8 @@ class ListTopRatedViewController: UIViewController {
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        guard let collectionView = self.collectionViewTopRated else { return }
-        collectionView.reloadData()
-        
+        guard let _ = self.collectionViewTopRated else { return }
+        self.reloadListMovies()
         super.viewWillTransition(to: size, with: coordinator)
     }
     
@@ -72,6 +71,14 @@ class ListTopRatedViewController: UIViewController {
         }
     }
     
+    ///Reload list of movies
+    private func reloadListMovies(){
+        self.collectionViewTopRated.performBatchUpdates({
+            let indexSet = IndexSet(integersIn: 0...0)
+            self.collectionViewTopRated.reloadSections(indexSet)
+        })
+    }
+    
     /// Register and configure view model
     private func setupViewModel(){
         
@@ -79,17 +86,15 @@ class ListTopRatedViewController: UIViewController {
             guard let _ = movies.element  else { return }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
                 self?.refreshControl.endRefreshing()
-                self?.collectionViewTopRated.reloadData()
+                self?.reloadListMovies()
             })
         }).disposed(by: self.disposeBag)
         
         viewModel.isLoading.asObservable().subscribe({ [weak self] isLoading  in
             guard let isLoading = isLoading.element  else { return }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
-                if isLoading == false {
-                    self?.refreshControl.endRefreshing()
-                }
-            })
+            if isLoading == false {
+                self?.refreshControl.endRefreshing()
+            }
         }).disposed(by: self.disposeBag)
         
         self.viewModel.error
@@ -107,9 +112,9 @@ class ListTopRatedViewController: UIViewController {
             .asObservable()
             .subscribe({ [weak self] object in
                 guard let isLoading = object.element, isLoading == true else {
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
                         self?.view.stopLoader()
-                    }
+                    })
                     return
                 }
                 

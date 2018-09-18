@@ -51,7 +51,6 @@ final class ListTopRatedViewModel {
     
     /// Request new updated data to View Model and then it'll update
     func requestTopRated(page: Int? = nil){
-        self.numberOfRows = 0
         self.isLoading.value = true
         if nextPage == 0 {
             isLoadingFirstRequest.value = true
@@ -63,11 +62,14 @@ final class ListTopRatedViewModel {
             }
             
             self?.delegate.requestTopRated(page: page ?? self?.page ?? 0) { [weak self] (movies, pageReceived, errorCustom) in
+                if movies.count > 0 {
+                    self?.movies.value.append(contentsOf: movies)
+                }
+                
                 self?.error.value = errorCustom
                 self?.isLoadingFirstRequest.value = false
                 self?.isLoading.value = false
                 self?.nextPage = pageReceived
-                self?.movies.value.append(contentsOf: movies)
                 let countMovies = self?.movies.value.count ?? 0
                 self?.numberOfRows = countMovies == 0 ? 1 : countMovies + 1
             }
@@ -78,13 +80,9 @@ final class ListTopRatedViewModel {
     ///
     /// - Parameter indexPath: indexPath of the cell
     func requestMoreMovies(index: Int){
-        if self.isLoading.value == false && self.movies.value.count > 0 {
-            if index == self.movies.value.count && page == nextPage {
-                self.page += 1
-                self.requestTopRated()
-            }
-        } else {
-            self.numberOfRows = 0
+        if index == self.movies.value.count && page == nextPage {
+            self.page += 1
+            self.requestTopRated()
         }
     }
     
