@@ -19,7 +19,7 @@ class GenreList: BaseModel, ModelProtocol {
     @objc private dynamic var name: String? = ""
     
     open override static func primaryKey() -> String? {
-        return "id"
+        return basePrimaryKeyModel
     }
     
     //MARK: - Custom methods

@@ -56,17 +56,19 @@ class MovieDetailViewModel {
     //MARK: - Custom methods
     
     /// Request new updated data to View Model and then it'll update
-    func requestData(idMovie: Int){
+    func requestData(idMovie: Int, completion:((_ hasLocalData: Bool) -> Void)? = nil){
         self.isLoading.value = true
         
         Movie.allObjects(filter: "\(Movie.primaryKey() ?? basePrimaryKeyModel) = \(idMovie)") { [weak self] (movies: [Movie]) in
             guard let movie = movies.first else {
                 self?.requestMovieFromServer(idMovie: idMovie)
+                completion?(false)
                 return
             }
             
             self?.populateData(movie: movie)
             self?.requestMovieFromServer(idMovie: idMovie)
+            completion?(true)
         }
     }
     
@@ -83,7 +85,7 @@ class MovieDetailViewModel {
     /// Populate variables data
     ///
     /// - Parameter movie: Movie
-    private func populateData(movie: Movie){
+    private func populateData(movie: Movie, completion: (() -> Void)? = nil){
         self.backdropPath.value = movie.getBackdropPath().value ?? ""
         self.posterPath.value = movie.getPosterPath().value
         self.name.value = movie.getTitle().value

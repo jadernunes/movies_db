@@ -15,18 +15,20 @@ final class RouterTopRated {
         case movieDetail
     }
     
-    func navigate(screen: ScreenName, idMovie: Int = -1){
+    func navigate(screen: ScreenName, idMovie: Int = -1, completion:(() -> Void)? = nil){
         switch screen {
         case .movieDetail:
-            openMovieDetail(idMovie: idMovie)
+            openMovieDetail(idMovie: idMovie, completion: completion)
             break
         }
     }
     
-    private func openMovieDetail(idMovie: Int){
+    private func openMovieDetail(idMovie: Int, completion:(() -> Void)? = nil){
         guard let viewController = R.storyboard.movie.movieDetailViewController() else { return }
         viewController.idMovie = idMovie
         viewController.modalTransitionStyle = .crossDissolve
-        Utils.visibleViewController()?.present(viewController, animated: true)
+        Utils.visibleViewController()?.present(viewController, animated: true){
+            completion?()
+        }
     }
 }

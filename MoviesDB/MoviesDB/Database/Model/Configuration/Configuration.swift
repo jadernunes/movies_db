@@ -17,18 +17,18 @@ class Configuration: BaseModel, ModelProtocol {
     
     @objc private dynamic var id: Int = 0
     @objc private dynamic var base_url: String = ""
-    @objc private dynamic var secure_base_url: String = ""
     private var backdrop_sizes = List<String>()
-    private var logo_sizes = List<String>()
     private var poster_sizes = List<String>()
-    private var profile_sizes = List<String>()
-    private var still_sizes = List<String>()
     
     open override static func primaryKey() -> String? {
-        return "id"
+        return basePrimaryKeyModel
     }
     
     //MARK: - Custom methods
+    
+    func getId() -> Variable<Int> {
+        return Variable<Int>(id)
+    }
     
     func getBaseUrl() -> Variable<String> {
         return Variable<String>(base_url)
@@ -38,20 +38,8 @@ class Configuration: BaseModel, ModelProtocol {
         return Variable<[String]>(Array(backdrop_sizes))
     }
     
-    func getLogoSizes() -> Variable<[String]> {
-        return Variable<[String]>(Array(logo_sizes))
-    }
-    
     func getPosterSizes() -> Variable<[String]> {
         return Variable<[String]>(Array(poster_sizes))
-    }
-    
-    func getProfileSizes() -> Variable<[String]> {
-        return Variable<[String]>(Array(profile_sizes))
-    }
-    
-    func getStillSizes() -> Variable<[String]> {
-        return Variable<[String]>(Array(still_sizes))
     }
 }
 
