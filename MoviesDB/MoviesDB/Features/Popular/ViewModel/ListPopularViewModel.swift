@@ -63,11 +63,14 @@ final class ListPopularViewModel {
             }
             
             self?.delegate.requestPopular(page: page ?? self?.page ?? 0) { [weak self] (movies, pageReceived, errorCustom) in
+                if movies.count > 0 {
+                    self?.movies.value.append(contentsOf: movies)
+                }
+                
                 self?.error.value = errorCustom
-                self?.isLoading.value = false
                 self?.isLoadingFirstRequest.value = false
+                self?.isLoading.value = false
                 self?.nextPage = pageReceived
-                self?.movies.value.append(contentsOf: movies)
                 let countMovies = self?.movies.value.count ?? 0
                 self?.numberOfRows = countMovies == 0 ? 1 : countMovies + 1
             }
@@ -78,13 +81,9 @@ final class ListPopularViewModel {
     ///
     /// - Parameter indexPath: indexPath of the cell
     func requestMoreMovies(index: Int){
-        if self.isLoading.value == false && self.movies.value.count > 0 {
-            if index == self.movies.value.count && page == nextPage {
-                self.page += 1
-                self.requestPopular()
-            }
-        } else {
-            self.numberOfRows = 0
+        if index == self.movies.value.count && page == nextPage {
+            self.page += 1
+            self.requestPopular()
         }
     }
     
