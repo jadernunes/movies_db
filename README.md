@@ -33,6 +33,15 @@ Features
 * **Movie detail**
 ```Show the movie detail when the item in the list will be touched```
 
+Screenshots
+------------
+
+![iphone1](/screenshots/iphone1.png?raw=true)
+![iphone2](/screenshots/iphone2.png?raw=true)
+![iphone3](/screenshots/iphone3.png?raw=true)
+![iphone4](/screenshots/iphone4.png?raw=true)
+![iphone5](/screenshots/iphone5.png?raw=true)
+
 Requirements
 ------------
 
