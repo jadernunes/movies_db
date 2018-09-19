@@ -3,7 +3,14 @@ Movies DB
 
 ![Swift](https://img.shields.io/badge/Swift-4.1-green.svg)
 
-Movies DB is an iOS application developed to list the Top Rated and Popular movies based on a specific site.
+Movies DB is an iOS application developed to list the Top Rated and Popular movies based on [The Movie DB](https://www.themoviedb.org).
+
+Architecture
+--------
+* **MVVM-C/W**
+
+```We are using MVVM as base of the architecture plus C/W(Controler or Worker), where we call one or more requests to server if it's necessay because the original MVVM use to use the ViewModel to call the requests to server.```
+
 
 Git
 --------
