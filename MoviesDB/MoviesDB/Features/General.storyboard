@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Lr7-pW-hPZ">
+            <objects>
+                <tabBarController storyboardIdentifier="HomeTabBarController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8IF-ik-0Ep" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="zvG-53-01Z">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="kno-x5-TKM" kind="relationship" relationship="viewControllers" id="X1l-bU-Ixr"/>
+                        <segue destination="1Gr-sD-aaa" kind="relationship" relationship="viewControllers" id="p3n-0c-nh3"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mb8-Hd-Yy5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-478" y="-117"/>
+        </scene>
+        <!--TopRated-->
+        <scene sceneID="Mcx-66-7zP">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TopRated" id="Wgj-S7-3dS" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="n7c-be-Q30"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TgT-VY-0Qz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="917" y="-481"/>
+        </scene>
+        <!--Popular-->
+        <scene sceneID="MKf-Hl-tFC">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Popular" id="f9E-Ot-Ie6" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="OJd-6D-wLS"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ONO-45-dPb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="950" y="277"/>
+        </scene>
+        <!--Top Rated-->
+        <scene sceneID="Ptu-ck-pBD">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kno-x5-TKM" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Top Rated" image="iconTopRated" id="xmM-In-zHy"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="kyR-K1-h20">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Wgj-S7-3dS" kind="relationship" relationship="rootViewController" id="lVj-tT-0gm"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hve-WW-KXu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="342" y="-480"/>
+        </scene>
+        <!--Popular-->
+        <scene sceneID="C2c-Gz-YXv">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1Gr-sD-aaa" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Popular" image="iconPopular" id="GIR-Nm-eVN"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="T6p-fE-YDk">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="f9E-Ot-Ie6" kind="relationship" relationship="rootViewController" id="Euc-YK-Q3T"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pwD-HT-Jq2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="342" y="278"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="iconPopular" width="112" height="112"/>
+        <image name="iconTopRated" width="20" height="20"/>
+    </resources>
+</document>

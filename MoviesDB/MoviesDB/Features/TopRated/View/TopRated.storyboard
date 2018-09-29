@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yV4-hY-fEY">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--List Top Rated View Controller-->
+        <scene sceneID="2eX-eG-Qi7">
+            <objects>
+                <viewController storyboardIdentifier="ListTopRatedViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lCr-hu-lOq" customClass="ListTopRatedViewController" customModule="MoviesDB" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="y6R-mg-pRC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wDi-uo-J6w">
+                                <rect key="frame" x="0.0" y="44" width="375" height="768"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="W4t-u8-JlX">
+                                    <size key="itemSize" width="136" height="222"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="wDi-uo-J6w" firstAttribute="trailing" secondItem="rEL-Ix-gic" secondAttribute="trailing" id="5Po-5t-eWZ"/>
+                            <constraint firstAttribute="bottom" secondItem="wDi-uo-J6w" secondAttribute="bottom" id="No2-8d-Osu"/>
+                            <constraint firstItem="wDi-uo-J6w" firstAttribute="top" secondItem="rEL-Ix-gic" secondAttribute="top" id="h8o-sW-hIl"/>
+                            <constraint firstItem="wDi-uo-J6w" firstAttribute="leading" secondItem="rEL-Ix-gic" secondAttribute="leading" id="oGs-Cq-1Gh"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="rEL-Ix-gic"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="7Vf-kP-RHh"/>
+                    <connections>
+                        <outlet property="collectionViewTopRated" destination="wDi-uo-J6w" id="QnA-42-YkS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0he-LE-3Bc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1012" y="277.09359605911334"/>
+        </scene>
+        <!--Top Rated-->
+        <scene sceneID="94l-fE-oF4">
+            <objects>
+                <navigationController title="Top Rated" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="yV4-hY-fEY" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ybI-bk-a3E">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="zq8-6n-3x1">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="lCr-hu-lOq" kind="relationship" relationship="rootViewController" id="Gtw-1u-dKC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AWf-3T-XVW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="72.799999999999997" y="277.51124437781112"/>
+        </scene>
+    </scenes>
+</document>
