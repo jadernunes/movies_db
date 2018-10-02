@@ -33,16 +33,18 @@ class SplashScreenViewController: UIViewController {
     /// Register and configure view model
     private func setupViewModel(){
         viewModel.errorInitialData.asObservable().subscribe({ [weak self] object in
-            guard let `self` = self else { return }
-            
-            if self.viewModel.isRequestFinished {
-                guard
-                    let error = object.element as? ErrorMoviesDB else {
-                        self.viewModel.openHomeScreen()
-                        return
-                }
+            DispatchQueue.main.async {
+                guard let `self` = self else { return }
                 
-                self.showErrorMesssage(mesage: error.message)
+                if self.viewModel.isRequestFinished {
+                    guard
+                        let error = object.element as? ErrorMoviesDB else {
+                            self.viewModel.openHomeScreen()
+                            return
+                    }
+                    
+                    self.showErrorMesssage(mesage: error.message)
+                }
             }
         }).disposed(by: disposeBag)
         requestInitialData()

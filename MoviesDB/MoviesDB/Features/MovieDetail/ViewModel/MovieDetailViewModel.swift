@@ -59,7 +59,7 @@ class MovieDetailViewModel {
     func requestData(idMovie: Int, completion:((_ hasLocalData: Bool) -> Void)? = nil){
         self.isLoading.value = true
         
-        Movie.allObjects(filter: "\(Movie.primaryKey() ?? basePrimaryKeyModel) = \(idMovie)") { [weak self] (movies: [Movie]) in
+        allObjects(type: Movie.self, filter: "\(Movie.primaryKey() ?? basePrimaryKeyModel) = \(idMovie)") { [weak self] (movies: [Movie]) in
                 guard let movieResult = movies.first else {
                     self?.requestMovieFromServer(idMovie: idMovie)
                     completion?(false)

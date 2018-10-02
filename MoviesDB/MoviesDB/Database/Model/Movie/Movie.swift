@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 import Realm
 
-class Movie: Object, ModelProtocol {
+class Movie: Object {
     
     //MARK: - Attributes
     

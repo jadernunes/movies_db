@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 import Realm
 
-class ConfigurationDB: Object, ModelProtocol {
+class ConfigurationDB: Object {
     
     //MARK: - Attributes
     

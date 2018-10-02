@@ -43,7 +43,7 @@ final class GenreListService: GenreListServiceDelegate {
                             return completion([], ErrorMoviesDB(message: R.string.localizable.messageLoadGenreListFail()))
                     }
                     
-                    GenreList.save(array: arrayGenre, completion: { (genres: [GenreList]) in
+                    save(type: GenreList.self, array: arrayGenre, completion: { (genres: [GenreList]) in
                         let result = genres.map({ (realmObject) -> GenreListRepresentable in
                             return GenreListRepresentable(genreList: realmObject)
                         })

@@ -56,7 +56,7 @@ final class ListTopRatedViewModel {
             isLoadingFirstRequest.value = true
         }
         
-        MovieTopRated.allObjects { [weak self] (movies: [MovieTopRated]) in
+        allObjects(type: MovieTopRated.self) { [weak self] (movies: [MovieTopRated]) in
             let result = movies.map({ (realmObject) -> MovieTopRatedRepresentable in
                 return MovieTopRatedRepresentable(movieTopRated: realmObject)
             })

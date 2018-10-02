@@ -57,7 +57,7 @@ final class ListPopularViewModel {
             isLoadingFirstRequest.value = true
         }
         
-        MoviePopular.allObjects { [weak self] (movies: [MoviePopular]) in
+        allObjects(type: MoviePopular.self) { [weak self] (movies: [MoviePopular]) in
             let result = movies.map({ (realmObject) -> MoviePopularRepresentable in
                 return MoviePopularRepresentable(moviePopular: realmObject)
             })

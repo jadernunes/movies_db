@@ -13,7 +13,7 @@ import Kingfisher
 extension UIImageView {
     
     func addPosterImage(subPath: String){
-        ConfigurationDB.allObjects { [weak self] (objects: [ConfigurationDB]) in
+        allObjects(type: ConfigurationDB.self) { [weak self] (objects: [ConfigurationDB]) in
             let objConfig = ConfigurationRepresentable(configuration: objects.first)
             DispatchQueue.main.async {
                 let urlBase = objConfig.getBaseUrl().value
@@ -26,7 +26,7 @@ extension UIImageView {
     }
     
     func addBackdropImage(subPath: String){
-        ConfigurationDB.allObjects { [weak self] (objects: [ConfigurationDB]) in
+        allObjects(type: ConfigurationDB.self) { [weak self] (objects: [ConfigurationDB]) in
             let objConfig = ConfigurationRepresentable(configuration: objects.first)
             DispatchQueue.main.async {
                 let urlBase = objConfig.getBaseUrl().value

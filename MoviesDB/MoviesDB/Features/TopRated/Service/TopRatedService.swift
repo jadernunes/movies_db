@@ -47,7 +47,7 @@ final class TopRatedService: TopRatedServiceDelegate {
                             return completion([], page, ErrorMoviesDB(message: R.string.localizable.messageLoadTopRatedFail()))
                     }
                     
-                    MovieTopRated.save(array: results, completion: { (array: [MovieTopRated]) in
+                    save(type: MovieTopRated.self, array: results, completion: { (array: [MovieTopRated]) in
                         let result = array.map({ (realmObject) -> MovieTopRatedRepresentable in
                             return MovieTopRatedRepresentable(movieTopRated: realmObject)
                         })

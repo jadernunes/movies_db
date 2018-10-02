@@ -62,7 +62,7 @@
 		2787B1C3214DB4B5006E180C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2787B1C2214DB4B5006E180C /* Assets.xcassets */; };
 		2787B1E2214DEE73006E180C /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2787B1E1214DEE73006E180C /* SplashScreenViewController.swift */; };
 		2787B1E7214DEF32006E180C /* ConfigurationDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2787B1E6214DEF32006E180C /* ConfigurationDB.swift */; };
-		2787B1E9214DEF5D006E180C /* ModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2787B1E8214DEF5D006E180C /* ModelProtocol.swift */; };
+		2787B1E9214DEF5D006E180C /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2787B1E8214DEF5D006E180C /* DatabaseManager.swift */; };
 		2787B1F2214E9BA8006E180C /* SplashScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2787B1F1214E9BA8006E180C /* SplashScreenViewModel.swift */; };
 		2787B1FE214EAB3A006E180C /* ApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2787B1FD214EAB3A006E180C /* ApiRequest.swift */; };
 		2787B200214EAB7C006E180C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2787B1FF214EAB7C006E180C /* Constants.swift */; };
@@ -152,7 +152,7 @@
 		2787B1D2214DB4B5006E180C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2787B1E1214DEE73006E180C /* SplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
 		2787B1E6214DEF32006E180C /* ConfigurationDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationDB.swift; sourceTree = "<group>"; };
-		2787B1E8214DEF5D006E180C /* ModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelProtocol.swift; sourceTree = "<group>"; };
+		2787B1E8214DEF5D006E180C /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		2787B1F1214E9BA8006E180C /* SplashScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenViewModel.swift; sourceTree = "<group>"; };
 		2787B1FD214EAB3A006E180C /* ApiRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRequest.swift; sourceTree = "<group>"; };
 		2787B1FF214EAB7C006E180C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -560,7 +560,7 @@
 		2787B1DE214DB539006E180C /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				2787B1E8214DEF5D006E180C /* ModelProtocol.swift */,
+				2787B1E8214DEF5D006E180C /* DatabaseManager.swift */,
 				2731DD362163A72700E30BF3 /* RepresentableBase.swift */,
 				27108018214F0727000FCA58 /* Model */,
 			);
@@ -938,7 +938,7 @@
 				2731DD2F2160FDEE00E30BF3 /* GenreListRepresentable.swift in Sources */,
 				27108035214F192E000FCA58 /* MovieCollectionViewCell.swift in Sources */,
 				2710805D214F4D14000FCA58 /* PopularControllerDelegate.swift in Sources */,
-				2787B1E9214DEF5D006E180C /* ModelProtocol.swift in Sources */,
+				2787B1E9214DEF5D006E180C /* DatabaseManager.swift in Sources */,
 				2787B200214EAB7C006E180C /* Constants.swift in Sources */,
 				2710805B214F4D07000FCA58 /* PopularController.swift in Sources */,
 				2710805F214F4D91000FCA58 /* ListPopularViewModel.swift in Sources */,

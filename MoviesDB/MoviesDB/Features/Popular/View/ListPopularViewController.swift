@@ -95,9 +95,11 @@ class ListPopularViewController: UIViewController {
         }).disposed(by: self.disposeBag)
         
         viewModel.isLoading.asObservable().subscribe({ [weak self] isLoading  in
-            guard let isLoading = isLoading.element  else { return }
-            if isLoading == false {
-                self?.refreshControl.endRefreshing()
+            DispatchQueue.main.async {
+                guard let isLoading = isLoading.element  else { return }
+                if isLoading == false {
+                    self?.refreshControl.endRefreshing()
+                }
             }
         }).disposed(by: self.disposeBag)
         
@@ -108,7 +110,9 @@ class ListPopularViewController: UIViewController {
                     let errorElement = object.element,
                     let error = errorElement
                     else { return }
-                self?.showErrorMesssage(mesage: error.message)
+                DispatchQueue.main.async {
+                    self?.showErrorMesssage(mesage: error.message)
+                }
             })
             .disposed(by: disposeBag)
         
@@ -122,7 +126,9 @@ class ListPopularViewController: UIViewController {
                     return
                 }
                 
-                self?.view.startLoader()
+                DispatchQueue.main.async {
+                    self?.view.startLoader()
+                }
             })
             .disposed(by: disposeBag)
     }

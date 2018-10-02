@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 import Realm
 
-class GenreList: Object, ModelProtocol {
+class GenreList: Object {
     
     //MARK: - Attributes
     
