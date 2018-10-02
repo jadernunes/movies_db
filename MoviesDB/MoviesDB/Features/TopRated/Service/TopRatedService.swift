@@ -51,7 +51,10 @@ final class TopRatedService: TopRatedServiceDelegate {
                         let result = array.map({ (realmObject) -> MovieTopRatedRepresentable in
                             return MovieTopRatedRepresentable(movieTopRated: realmObject)
                         })
-                        completion(result, pageReceived, nil)
+                        
+                        DispatchQueue.main.async {
+                            completion(result, pageReceived, nil)
+                        }
                     })
                 } catch {
                     completion([], page, ErrorMoviesDB(message: R.string.localizable.messageLoadDataFail()))

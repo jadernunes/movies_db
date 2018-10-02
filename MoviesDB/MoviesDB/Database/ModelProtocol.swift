@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-let threadDefault = DispatchQueue.main
+let threadDefault = DispatchQueue(label: "com.jader.MoviesDB.realm")
 
 // MARK: - Base Model protocol
 protocol ModelProtocol {
@@ -19,7 +19,6 @@ protocol ModelProtocol {
     static func allObjects<T: Object>(filter: String, completion:@escaping (([T]) -> Void))
     static func update<T: Object>(object: T, value: Any?, key: String, completion:@escaping ((Bool) -> Void))
 }
-
 
 // MARK: - To became optional implementation
 extension ModelProtocol {

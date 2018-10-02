@@ -56,6 +56,7 @@
 		2731DD3121610B5400E30BF3 /* MovieRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2731DD3021610B5400E30BF3 /* MovieRepresentable.swift */; };
 		2731DD3321610DE200E30BF3 /* MoviePopularRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2731DD3221610DE200E30BF3 /* MoviePopularRepresentable.swift */; };
 		2731DD352161106200E30BF3 /* MovieTopRatedRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2731DD342161106200E30BF3 /* MovieTopRatedRepresentable.swift */; };
+		2731DD372163A72700E30BF3 /* RepresentableBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2731DD362163A72700E30BF3 /* RepresentableBase.swift */; };
 		2787B1BC214DB4B4006E180C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2787B1BB214DB4B4006E180C /* AppDelegate.swift */; };
 		2787B1C1214DB4B4006E180C /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2787B1BF214DB4B4006E180C /* SplashScreen.storyboard */; };
 		2787B1C3214DB4B5006E180C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2787B1C2214DB4B5006E180C /* Assets.xcassets */; };
@@ -141,6 +142,7 @@
 		2731DD3021610B5400E30BF3 /* MovieRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRepresentable.swift; sourceTree = "<group>"; };
 		2731DD3221610DE200E30BF3 /* MoviePopularRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePopularRepresentable.swift; sourceTree = "<group>"; };
 		2731DD342161106200E30BF3 /* MovieTopRatedRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTopRatedRepresentable.swift; sourceTree = "<group>"; };
+		2731DD362163A72700E30BF3 /* RepresentableBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepresentableBase.swift; sourceTree = "<group>"; };
 		2787B1B8214DB4B4006E180C /* MoviesDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2787B1BB214DB4B4006E180C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2787B1C0214DB4B4006E180C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SplashScreen.storyboard; sourceTree = "<group>"; };
@@ -559,6 +561,7 @@
 			isa = PBXGroup;
 			children = (
 				2787B1E8214DEF5D006E180C /* ModelProtocol.swift */,
+				2731DD362163A72700E30BF3 /* RepresentableBase.swift */,
 				27108018214F0727000FCA58 /* Model */,
 			);
 			path = Database;
@@ -916,6 +919,7 @@
 				2710807E214F639D000FCA58 /* Utils.swift in Sources */,
 				2787B208214EB097006E180C /* SplashScreenControllerDelegate.swift in Sources */,
 				27108008214EECF6000FCA58 /* R.generated.swift in Sources */,
+				2731DD372163A72700E30BF3 /* RepresentableBase.swift in Sources */,
 				2787B206214EB08E006E180C /* SplashScreenController.swift in Sources */,
 				27108078214F5F7B000FCA58 /* MovieDetailViewController.swift in Sources */,
 				2710801A214F0871000FCA58 /* Movie.swift in Sources */,

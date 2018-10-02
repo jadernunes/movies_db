@@ -60,17 +60,17 @@ class MovieDetailViewModel {
         self.isLoading.value = true
         
         Movie.allObjects(filter: "\(Movie.primaryKey() ?? basePrimaryKeyModel) = \(idMovie)") { [weak self] (movies: [Movie]) in
-            guard let movieResult = movies.first else {
+                guard let movieResult = movies.first else {
+                    self?.requestMovieFromServer(idMovie: idMovie)
+                    completion?(false)
+                    return
+                }
+                
+                let movie = MovieRepresentable(movie: movieResult)
+                
+                self?.populateData(movie: movie)
                 self?.requestMovieFromServer(idMovie: idMovie)
-                completion?(false)
-                return
-            }
-            
-            let movie = MovieRepresentable(movie: movieResult)
-            
-            self?.populateData(movie: movie)
-            self?.requestMovieFromServer(idMovie: idMovie)
-            completion?(true)
+                completion?(true)
         }
     }
     
@@ -101,7 +101,7 @@ class MovieDetailViewModel {
     ///
     /// - Parameter movie: object movie
     private func configureListGenre(movie: MovieRepresentable){
-        movie.getGenreNames { (genres) in
+        movie.getGenreNames { [weak self] (genres) in
             var listGenre = ""
             for (index, name) in genres.enumerated() {
                 if index == genres.count-1 {
@@ -110,7 +110,7 @@ class MovieDetailViewModel {
                     listGenre += "\(name), "
                 }
             }
-            self.genre.value = listGenre
+            self?.genre.value = listGenre
         }
     }
     

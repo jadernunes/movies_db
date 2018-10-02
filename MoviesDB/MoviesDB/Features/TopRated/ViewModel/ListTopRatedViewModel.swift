@@ -60,7 +60,6 @@ final class ListTopRatedViewModel {
             let result = movies.map({ (realmObject) -> MovieTopRatedRepresentable in
                 return MovieTopRatedRepresentable(movieTopRated: realmObject)
             })
-            
             if self?.nextPage == 0 {
                 self?.movies.value = result
             }

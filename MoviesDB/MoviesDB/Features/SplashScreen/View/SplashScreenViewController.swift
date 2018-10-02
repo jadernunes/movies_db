@@ -32,7 +32,9 @@ class SplashScreenViewController: UIViewController {
     
     /// Register and configure view model
     private func setupViewModel(){
-        viewModel.errorInitialData.asObservable().subscribe({ object in
+        viewModel.errorInitialData.asObservable().subscribe({ [weak self] object in
+            guard let `self` = self else { return }
+            
             if self.viewModel.isRequestFinished {
                 guard
                     let error = object.element as? ErrorMoviesDB else {

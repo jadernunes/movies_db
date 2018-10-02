@@ -30,8 +30,11 @@ class MovieCellViewModel {
             self.urlPoster.value = movie.getPosterPath().value
             self.voteAvarage.value = "\(movie.getVoteAvarage().value)"
             
-            movie.getGenreNames { (genres) in
-                guard let genre = genres.first else { return }
+            movie.getGenreNames { [weak self] (genres) in
+                guard
+                    let `self` = self,
+                    let genre = genres.first
+                    else { return }
                 let genreInfo = genre.count > 1 ? "\(genre) + \(genres.count - 1)" : genre
                 self.genre.value = genreInfo
             }

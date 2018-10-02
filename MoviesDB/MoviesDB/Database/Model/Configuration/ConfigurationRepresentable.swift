@@ -9,16 +9,17 @@
 import Foundation
 import RxSwift
 
-class ConfigurationRepresentable {
+class ConfigurationRepresentable: RepresentableBase {
     
     //MARK: - Attributes
     
-    private var id: Int = 0
     private var baseUrl: String = ""
     private var backdropSizes = [String]()
     private var posterSizes = [String]()
     
     init(configuration: Configuration?) {
+        super.init()
+        
         id = configuration?.getId() ?? 0
         baseUrl = configuration?.getBaseUrl() ?? ""
         backdropSizes = configuration?.getBackdropSizes() ?? []
@@ -26,10 +27,6 @@ class ConfigurationRepresentable {
     }
     
     //MARK: - Custom methods
-    
-    func getId() -> Variable<Int> {
-        return Variable<Int>(id)
-    }
     
     func getBaseUrl() -> Variable<String> {
         return Variable<String>(baseUrl)

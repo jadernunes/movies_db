@@ -9,11 +9,10 @@
 import Foundation
 import RxSwift
 
-class MovieRepresentable: NSObject {
+class MovieRepresentable: RepresentableBase {
     
     //MARK: - Attributes
     
-    private var id: Int = 0
     private var voteAverage: Double = 0.0
     private var title: String = ""
     private var posterPath: String = ""
@@ -27,6 +26,8 @@ class MovieRepresentable: NSObject {
     //MARK: - Custom methods
     
     init(movie: Movie?) {
+        super.init()
+        
         id = movie?.getId() ?? 0
         voteAverage = movie?.getVoteAvarage() ?? 0.0
         title = movie?.getTitle() ?? ""
@@ -37,10 +38,6 @@ class MovieRepresentable: NSObject {
         overview = movie?.getOverview() ?? ""
         releaseDate = movie?.getReleaseDate() ?? ""
         genres = movie?.getGenres() ?? []
-    }
-    
-    func getId() -> Variable<Int> {
-        return Variable<Int>(id)
     }
     
     func getVoteAvarage() -> Variable<Double> {

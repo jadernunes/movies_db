@@ -47,8 +47,9 @@ final class GenreListService: GenreListServiceDelegate {
                         let result = genres.map({ (realmObject) -> GenreListRepresentable in
                             return GenreListRepresentable(genreList: realmObject)
                         })
-                        
-                        completion(result, nil)
+                        DispatchQueue.main.async {
+                            completion(result, nil)
+                        }
                     })
                 } catch {
                     completion([], ErrorMoviesDB(message: R.string.localizable.messageLoadDataFail()))

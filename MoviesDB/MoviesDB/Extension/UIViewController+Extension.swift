@@ -32,12 +32,12 @@ extension UIViewController {
                 errorView.frame.origin.y = superFrame.origin.y
                 UIApplication.shared.keyWindow?.addSubview(errorView)
                 
-            }, completion: { (finish) in
+            }, completion: { [weak self] (finish) in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     UIView.animate(withDuration: 0.2, animations: {
                         errorView.frame.origin.y = superFrame.origin.y - errorView.frame.height
                     }, completion: { (finish) in
-                        self.removeErrorMessage(errorView: errorView)
+                        self?.removeErrorMessage(errorView: errorView)
                     })
                 }
             })

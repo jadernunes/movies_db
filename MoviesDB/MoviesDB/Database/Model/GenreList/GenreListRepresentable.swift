@@ -9,22 +9,19 @@
 import Foundation
 import RxSwift
 
-class GenreListRepresentable {
+class GenreListRepresentable: RepresentableBase {
     
     //MARK: - Attributes
     
-    private var id = 0
     private var name = ""
 
     //MARK: - Custom methods
     
     init(genreList: GenreList?) {
+        super.init()
+        
         id = genreList?.getId() ?? 0
         name = genreList?.getName() ?? ""
-    }
-    
-    func getId() -> Variable<Int> {
-        return Variable<Int>(id)
     }
     
     func getName() -> Variable<String> {

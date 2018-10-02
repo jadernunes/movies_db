@@ -51,7 +51,9 @@ final class PopularService: PopularServiceDelegate {
                         let result = array.map({ (realmObject) -> MoviePopularRepresentable in
                             return MoviePopularRepresentable(moviePopular: realmObject)
                         })
-                        completion(result, pageReceived, nil)
+                        DispatchQueue.main.async {
+                            completion(result, pageReceived, nil)
+                        }
                     })
                 } catch {
                     completion([], page, ErrorMoviesDB(message: R.string.localizable.messageLoadDataFail()))

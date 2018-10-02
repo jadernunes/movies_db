@@ -21,8 +21,8 @@ class MovieTopRated: Movie {
     
     override func getGenreNames(completion: @escaping (([String]) -> Void)) {
         var listGenres: [String] = []
-        GenreList.allObjects(completion: { (genres: [GenreList]) in
-            self.genre_ids.forEach({ (idGenre) in
+        GenreList.allObjects(completion: { [weak self] (genres: [GenreList]) in
+            self?.genre_ids.forEach({ (idGenre) in
                 if let name = genres.filter({ $0.getId() == idGenre }).first?.getName() {
                     listGenres.append(name)
                 }
