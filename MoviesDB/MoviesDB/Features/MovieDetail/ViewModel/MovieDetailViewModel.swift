@@ -59,16 +59,18 @@ class MovieDetailViewModel {
     func requestData(idMovie: Int, completion:((_ hasLocalData: Bool) -> Void)? = nil){
         self.isLoading.value = true
         
-        Movie.allObjects(filter: "\(Movie.primaryKey() ?? basePrimaryKeyModel) = \(idMovie)") { [weak self] (movies: [Movie]) in
-            guard let movie = movies.first else {
+        allObjects(type: Movie.self, filter: "\(Movie.primaryKey() ?? basePrimaryKeyModel) = \(idMovie)") { [weak self] (movies: [Movie]) in
+                guard let movieResult = movies.first else {
+                    self?.requestMovieFromServer(idMovie: idMovie)
+                    completion?(false)
+                    return
+                }
+                
+                let movie = MovieRepresentable(movie: movieResult)
+                
+                self?.populateData(movie: movie)
                 self?.requestMovieFromServer(idMovie: idMovie)
-                completion?(false)
-                return
-            }
-            
-            self?.populateData(movie: movie)
-            self?.requestMovieFromServer(idMovie: idMovie)
-            completion?(true)
+                completion?(true)
         }
     }
     
@@ -85,7 +87,7 @@ class MovieDetailViewModel {
     /// Populate variables data
     ///
     /// - Parameter movie: Movie
-    private func populateData(movie: Movie, completion: (() -> Void)? = nil){
+    private func populateData(movie: MovieRepresentable, completion: (() -> Void)? = nil){
         self.backdropPath.value = movie.getBackdropPath().value ?? ""
         self.posterPath.value = movie.getPosterPath().value
         self.name.value = movie.getTitle().value
@@ -98,8 +100,8 @@ class MovieDetailViewModel {
     /// Configure list of genre
     ///
     /// - Parameter movie: object movie
-    private func configureListGenre(movie: Movie){
-        movie.getGenreNames { (genres) in
+    private func configureListGenre(movie: MovieRepresentable){
+        movie.getGenreNames { [weak self] (genres) in
             var listGenre = ""
             for (index, name) in genres.enumerated() {
                 if index == genres.count-1 {
@@ -108,7 +110,7 @@ class MovieDetailViewModel {
                     listGenre += "\(name), "
                 }
             }
-            self.genre.value = listGenre
+            self?.genre.value = listGenre
         }
     }
     

@@ -86,7 +86,9 @@ class MovieCollectionViewCell: UICollectionViewCell {
         
         viewModel.urlPoster
             .asObservable()
-            .subscribe({ pathObject in
+            .subscribe({ [weak self] pathObject in
+                guard let `self` = self else { return }
+                
                 let path = pathObject.element ?? ""
                 self.imageViewPoster.addPosterImage(subPath: path)
             }).disposed(by: disposeBag)

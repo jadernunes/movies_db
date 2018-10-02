@@ -47,8 +47,14 @@ final class TopRatedService: TopRatedServiceDelegate {
                             return completion([], page, ErrorMoviesDB(message: R.string.localizable.messageLoadTopRatedFail()))
                     }
                     
-                    MovieTopRated.save(array: results, completion: { (array) in
-                        completion(array, pageReceived, nil)
+                    save(type: MovieTopRated.self, array: results, completion: { (array: [MovieTopRated]) in
+                        let result = array.map({ (realmObject) -> MovieTopRatedRepresentable in
+                            return MovieTopRatedRepresentable(movieTopRated: realmObject)
+                        })
+                        
+                        DispatchQueue.main.async {
+                            completion(result, pageReceived, nil)
+                        }
                     })
                 } catch {
                     completion([], page, ErrorMoviesDB(message: R.string.localizable.messageLoadDataFail()))

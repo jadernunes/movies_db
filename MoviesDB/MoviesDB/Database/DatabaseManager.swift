@@ -9,35 +9,22 @@
 import Foundation
 import RealmSwift
 
-//MARK: - Save objects
+let threadRealm = DispatchQueue(label: "com.jader.MoviesDB.realm")
+let realmConfiguration: Realm.Configuration = {
+    var config = Realm.Configuration(objectTypes: [ConfigurationDB.self, GenreList.self, Movie.self, MovieTopRated.self, MoviePopular.self])
+    return config
+}()
 
-func saveObject<T: BaseModel>(_ typeObject: T.Type, content: [String: Any], completion:@escaping ((T?) -> Void)) {
-    threadDefault.async {
-        var object: T?
-        do {
-            let realm = try Realm()
-            try realm.write {
-                object = realm.create(T.self, value: content, update: true)
-            }
-        } catch let err {
-            print("Error while writing '\(T.self.description())' to realm: \(err)")
-            completion(nil)
-        }
-        
-        completion(object)
-    }
-}
-
-func saveObjects<T: BaseModel>(_ typeObject: T.Type, array: [[String: Any]], completion:@escaping (([T]) -> Void)) {
-    threadDefault.async {
+func save<T: Object>(type: T.Type, array: [[String: Any]], completion: @escaping (([T]) -> Void)){
+    threadRealm.async {
         var objects: [T] = []
         
         for item in array {
             do {
-                let realm = try Realm()
+                let realm = try Realm(configuration: realmConfiguration)
                 realm.beginWrite()
                 
-                let object: T = realm.create(T.self, value: item, update: true)
+                let object: T = realm.create(type, value: item, update: true)
                 objects.append(object)
                 
                 try realm.commitWrite()
@@ -50,14 +37,29 @@ func saveObjects<T: BaseModel>(_ typeObject: T.Type, array: [[String: Any]], com
     }
 }
 
-//MARK: - Get objects
-
-func getObjects<T: BaseModel>(_ typeObject: T.Type, completion:@escaping (([T]) -> Void)) {
-    threadDefault.async {
+func save<T: Object>(type: T.Type, data: [String: Any], completion: @escaping ((T?) -> Void)){
+    threadRealm.async {
+        var object: T?
         do {
-            let realm = try Realm()
+            let realm = try Realm(configuration: realmConfiguration)
+            try realm.write {
+                object = realm.create(type, value: data, update: true)
+            }
+        } catch let err {
+            print("Error while writing '\(T.self.description())' to realm: \(err)")
+            completion(nil)
+        }
+        
+        completion(object)
+    }
+}
+
+func allObjects<T: Object>(type: T.Type, completion: @escaping (([T]) -> Void)){
+    threadRealm.async {
+        do {
+            let realm = try Realm(configuration: realmConfiguration)
             realm.refresh()
-            let listObjects: [T] = realm.objects(T.self).map{ $0 }
+            let listObjects: [T] = realm.objects(type).map{ $0 }
             completion(listObjects)
         } catch let err {
             print("Error while getting all '\(T.self.description())' from realm: \(err)")
@@ -66,12 +68,12 @@ func getObjects<T: BaseModel>(_ typeObject: T.Type, completion:@escaping (([T]) 
     }
 }
 
-func getObjects<T: BaseModel>(_ typeObject: T.Type, filter: String, completion:@escaping (([T]) -> Void)) {
-    threadDefault.async {
+func allObjects<T: Object>(type: T.Type, filter: String, completion:@escaping (([T]) -> Void)){
+    threadRealm.async {
         do {
-            let realm = try Realm()
+            let realm = try Realm(configuration: realmConfiguration)
             realm.refresh()
-            let listObjects: [T] = realm.objects(T.self).filter(filter).map{ $0 }
+            let listObjects: [T] = realm.objects(type).filter(filter).map{ $0 }
             completion(listObjects)
         } catch let err {
             print("Error while getting '\(T.self.description())' by \(filter)' from realm: \(err)")
@@ -80,12 +82,10 @@ func getObjects<T: BaseModel>(_ typeObject: T.Type, filter: String, completion:@
     }
 }
 
-//MARK: - Update objects
-
-func updateObject<T: BaseModel>(object: T, value: Any?, key: String, completion:@escaping ((Bool) -> Void)) {
-    threadDefault.async {
+func update<T: Object>(object: T, value: Any?, key: String, completion:@escaping ((Bool) -> Void)){
+    threadRealm.async {
         do {
-            let realm = try Realm()
+            let realm = try Realm(configuration: realmConfiguration)
             try realm.write {
                 object.setValue(value, forKey: key)
             }
