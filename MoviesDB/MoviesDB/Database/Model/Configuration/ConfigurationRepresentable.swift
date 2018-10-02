@@ -17,7 +17,7 @@ class ConfigurationRepresentable: RepresentableBase {
     private var backdropSizes = [String]()
     private var posterSizes = [String]()
     
-    init(configuration: Configuration?) {
+    init(configuration: ConfigurationDB?) {
         super.init()
         
         id = configuration?.getId() ?? 0

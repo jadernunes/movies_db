@@ -21,8 +21,17 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.file` struct is generated, and contains static references to 0 files.
+  /// This `R.file` struct is generated, and contains static references to 1 files.
   struct file {
+    /// Resource file `RealmDB.rtf`.
+    static let realmDBRtf = Rswift.FileResource(bundle: R.hostingBundle, name: "RealmDB", pathExtension: "rtf")
+    
+    /// `bundle.url(forResource: "RealmDB", withExtension: "rtf")`
+    static func realmDBRtf(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.realmDBRtf
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+    
     fileprivate init() {}
   }
   

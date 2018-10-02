@@ -1,5 +1,5 @@
 //
-//  Configuration.swift
+//  ConfigurationDB.swift
 //  MoviesDB
 //
 //  Created by Jader Nunes on 2018-09-15.
@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 import Realm
 
-class Configuration: Object, ModelProtocol {
+class ConfigurationDB: Object, ModelProtocol {
     
     //MARK: - Attributes
     

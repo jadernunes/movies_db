@@ -9,7 +9,11 @@
 import Foundation
 import RealmSwift
 
-let threadDefault = DispatchQueue(label: "com.jader.MoviesDB.realm")
+let threadRealm = DispatchQueue(label: "com.jader.MoviesDB.realm")
+let realmConfiguration: Realm.Configuration = {
+    var config = Realm.Configuration(objectTypes: [ConfigurationDB.self, GenreList.self, Movie.self, MovieTopRated.self, MoviePopular.self])
+    return config
+}()
 
 // MARK: - Base Model protocol
 protocol ModelProtocol {
@@ -24,12 +28,12 @@ protocol ModelProtocol {
 extension ModelProtocol {
     
     static func save<T: Object>(array: [[String: Any]], completion: @escaping (([T]) -> Void)){
-        threadDefault.async {
+        threadRealm.async {
             var objects: [T] = []
             
             for item in array {
                 do {
-                    let realm = try Realm()
+                    let realm = try Realm(configuration: realmConfiguration)
                     realm.beginWrite()
                     
                     let object: T = realm.create(T.self, value: item, update: true)
@@ -46,10 +50,10 @@ extension ModelProtocol {
     }
     
     static func save<T: Object>(data: [String: Any], completion: @escaping ((T?) -> Void)){
-        threadDefault.async {
+        threadRealm.async {
             var object: T?
             do {
-                let realm = try Realm()
+                let realm = try Realm(configuration: realmConfiguration)
                 try realm.write {
                     object = realm.create(T.self, value: data, update: true)
                 }
@@ -63,9 +67,9 @@ extension ModelProtocol {
     }
     
     static func allObjects<T: Object>(completion: @escaping (([T]) -> Void)){
-        threadDefault.async {
+        threadRealm.async {
             do {
-                let realm = try Realm()
+                let realm = try Realm(configuration: realmConfiguration)
                 realm.refresh()
                 let listObjects: [T] = realm.objects(T.self).map{ $0 }
                 completion(listObjects)
@@ -77,9 +81,9 @@ extension ModelProtocol {
     }
     
     static func allObjects<T: Object>(filter: String, completion:@escaping (([T]) -> Void)){
-        threadDefault.async {
+        threadRealm.async {
             do {
-                let realm = try Realm()
+                let realm = try Realm(configuration: realmConfiguration)
                 realm.refresh()
                 let listObjects: [T] = realm.objects(T.self).filter(filter).map{ $0 }
                 completion(listObjects)
@@ -91,9 +95,9 @@ extension ModelProtocol {
     }
     
     static func update<T: Object>(object: T, value: Any?, key: String, completion:@escaping ((Bool) -> Void)){
-        threadDefault.async {
+        threadRealm.async {
             do {
-                let realm = try Realm()
+                let realm = try Realm(configuration: realmConfiguration)
                 try realm.write {
                     object.setValue(value, forKey: key)
                 }
