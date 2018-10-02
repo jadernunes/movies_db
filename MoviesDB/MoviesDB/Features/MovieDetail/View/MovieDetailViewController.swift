@@ -150,15 +150,15 @@ class MovieDetailViewController: UIViewController {
         
         self.viewModel.isLoading
             .asObservable()
-            .subscribe({ object in
+            .subscribe({ [weak self] object in
                 guard let isLoading = object.element, isLoading == true else {
                     DispatchQueue.main.async {
-                        self.view.stopLoader()
+                        self?.view.stopLoader()
                     }
                     return
                 }
                 
-                self.view.startLoader()
+                self?.view.startLoader()
             })
             .disposed(by: disposeBag)
         

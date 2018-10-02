@@ -13,23 +13,27 @@ import Kingfisher
 extension UIImageView {
     
     func addPosterImage(subPath: String){
-        Configuration.allObjects { (objects: [Configuration]) in
-            if let objConfig = objects.first {
+        allObjects(type: ConfigurationDB.self) { [weak self] (objects: [ConfigurationDB]) in
+            let objConfig = ConfigurationRepresentable(configuration: objects.first)
+            DispatchQueue.main.async {
                 let urlBase = objConfig.getBaseUrl().value
-                let sizeImage = objConfig.getPosterSizes().value[1]
+                let listSizes = objConfig.getPosterSizes().value
+                let sizeImage = listSizes.count > 0 ? listSizes[1] : ""
                 let url = URL(string: "\(String(describing: urlBase))\(sizeImage)\(subPath)")
-                self.kf.setImage(with: url, placeholder: R.image.posterPlaceholder())
+                self?.kf.setImage(with: url, placeholder: R.image.posterPlaceholder())
             }
         }
     }
     
     func addBackdropImage(subPath: String){
-        Configuration.allObjects { (objects: [Configuration]) in
-            if let objConfig = objects.first {
+        allObjects(type: ConfigurationDB.self) { [weak self] (objects: [ConfigurationDB]) in
+            let objConfig = ConfigurationRepresentable(configuration: objects.first)
+            DispatchQueue.main.async {
                 let urlBase = objConfig.getBaseUrl().value
-                let sizeImage = objConfig.getBackdropSizes().value[1]
+                let listSizes = objConfig.getBackdropSizes().value
+                let sizeImage = listSizes.count > 0 ? listSizes[1] : ""
                 let url = URL(string: "\(String(describing: urlBase))\(sizeImage)\(subPath)")
-                self.kf.setImage(with: url, placeholder: R.image.backdropPlaceholder())
+                self?.kf.setImage(with: url, placeholder: R.image.backdropPlaceholder())
             }
         }
     }

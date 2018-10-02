@@ -7,11 +7,10 @@
 //
 
 import Foundation
-import RxSwift
 import RealmSwift
 import Realm
 
-class GenreList: BaseModel, ModelProtocol {
+class GenreList: Object {
     
     //MARK: - Attributes
     
@@ -24,12 +23,11 @@ class GenreList: BaseModel, ModelProtocol {
     
     //MARK: - Custom methods
     
-    func getId() -> Variable<Int> {
-        return Variable<Int>(id)
+    func getId() -> Int {
+        return id
     }
     
-    func getName() -> Variable<String> {
-        guard let name = name else { return Variable<String>("") }
-        return Variable<String>(name)
+    func getName() -> String {
+        return name ?? ""
     }
 }

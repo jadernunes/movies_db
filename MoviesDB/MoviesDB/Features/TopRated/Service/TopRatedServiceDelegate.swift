@@ -9,7 +9,7 @@
 import Foundation
 
 /// Representation of data result
-typealias TopRatedCompletion = ((_ movies: [MovieTopRated], _ page: Int, _ error: ErrorMoviesDB?) -> Void)
+typealias TopRatedCompletion = ((_ movies: [MovieTopRatedRepresentable], _ page: Int, _ error: ErrorMoviesDB?) -> Void)
 
 protocol TopRatedServiceDelegate {
     

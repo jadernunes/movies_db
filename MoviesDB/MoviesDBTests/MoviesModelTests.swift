@@ -39,71 +39,54 @@ class MoviesModelTests: XCTestCase {
         "name":"a"
         ] as [String : Any]
     
-    func testNextID(){
-        let expc = self.expectation(description: #function)
-        
-        let schema = RLMSchema(objectClasses: [])
-        let model = BaseModel(value: basePrimaryKeyModel, schema: schema)
-        let service = PopularService()
-        
-        service.requestPopular(page: 1) { (movies, page, error) in
-            model.getNextId(BaseModel.self, key: basePrimaryKeyModel) { (value) in
-                expc.fulfill()
-                XCTAssertGreaterThan(value, 0)
-            }
-        }
-        
-        waitForExpectations(timeout: apiTimeout, handler: nil)
-    }
-    
     func testMovieValues(){
         
-        let schema = RLMSchema(objectClasses: [])
+        let schema = RLMSchema(objectClasses: [ConfigurationDB.self, GenreList.self, Movie.self, MovieTopRated.self, MoviePopular.self])
         let movie = Movie(value: jsonMovie, schema: schema)
         
-        XCTAssertEqual(movie.getId().value, 1)
-        XCTAssertEqual(movie.getVoteAvarage().value, 1.1)
-        XCTAssertEqual(movie.getTitle().value, "a")
-        XCTAssertEqual(movie.getPosterPath().value, "b")
-        XCTAssertEqual(movie.getOriginalLanguage().value, "c")
-        XCTAssertEqual(movie.getBackdropPath().value, "d")
-        XCTAssertEqual(movie.isAdult().value, false)
-        XCTAssertEqual(movie.getOverview().value, "e")
-        XCTAssertEqual(movie.getReleaseDate().value, "f")
+        XCTAssertEqual(movie.getId(), 1)
+        XCTAssertEqual(movie.getVoteAvarage(), 1.1)
+        XCTAssertEqual(movie.getTitle(), "a")
+        XCTAssertEqual(movie.getPosterPath(), "b")
+        XCTAssertEqual(movie.getOriginalLanguage(), "c")
+        XCTAssertEqual(movie.getBackdropPath(), "d")
+        XCTAssertEqual(movie.isAdult(), false)
+        XCTAssertEqual(movie.getOverview(), "e")
+        XCTAssertEqual(movie.getReleaseDate(), "f")
     }
     
     func testMovieTopRatedValues(){
         
-        let schema = RLMSchema(objectClasses: [])
+        let schema = RLMSchema(objectClasses: [ConfigurationDB.self, GenreList.self, Movie.self, MovieTopRated.self, MoviePopular.self])
         let movie = MovieTopRated(value: jsonMovie, schema: schema)
         
-        XCTAssertEqual(movie.getId().value, 1)
-        XCTAssertEqual(movie.getVoteAvarage().value, 1.1)
-        XCTAssertEqual(movie.getTitle().value, "a")
-        XCTAssertEqual(movie.getPosterPath().value, "b")
-        XCTAssertEqual(movie.getOriginalLanguage().value, "c")
-        XCTAssertEqual(movie.getBackdropPath().value, "d")
-        XCTAssertEqual(movie.isAdult().value, false)
-        XCTAssertEqual(movie.getOverview().value, "e")
-        XCTAssertEqual(movie.getReleaseDate().value, "f")
-        XCTAssertEqual(movie.getGenreIds().value.count, 4)
+        XCTAssertEqual(movie.getId(), 1)
+        XCTAssertEqual(movie.getVoteAvarage(), 1.1)
+        XCTAssertEqual(movie.getTitle(), "a")
+        XCTAssertEqual(movie.getPosterPath(), "b")
+        XCTAssertEqual(movie.getOriginalLanguage(), "c")
+        XCTAssertEqual(movie.getBackdropPath(), "d")
+        XCTAssertEqual(movie.isAdult(), false)
+        XCTAssertEqual(movie.getOverview(), "e")
+        XCTAssertEqual(movie.getReleaseDate(), "f")
+        XCTAssertEqual(movie.getGenreIds().count, 4)
     }
 
     func testMoviePopularValues(){
         
-        let schema = RLMSchema(objectClasses: [])
+        let schema = RLMSchema(objectClasses: [ConfigurationDB.self, GenreList.self, Movie.self, MovieTopRated.self, MoviePopular.self])
         let movie = MovieTopRated(value: jsonMovie, schema: schema)
         
-        XCTAssertEqual(movie.getId().value, 1)
-        XCTAssertEqual(movie.getVoteAvarage().value, 1.1)
-        XCTAssertEqual(movie.getTitle().value, "a")
-        XCTAssertEqual(movie.getPosterPath().value, "b")
-        XCTAssertEqual(movie.getOriginalLanguage().value, "c")
-        XCTAssertEqual(movie.getBackdropPath().value, "d")
-        XCTAssertEqual(movie.isAdult().value, false)
-        XCTAssertEqual(movie.getOverview().value, "e")
-        XCTAssertEqual(movie.getReleaseDate().value, "f")
-        XCTAssertEqual(movie.getGenreIds().value.count, 4)
+        XCTAssertEqual(movie.getId(), 1)
+        XCTAssertEqual(movie.getVoteAvarage(), 1.1)
+        XCTAssertEqual(movie.getTitle(), "a")
+        XCTAssertEqual(movie.getPosterPath(), "b")
+        XCTAssertEqual(movie.getOriginalLanguage(), "c")
+        XCTAssertEqual(movie.getBackdropPath(), "d")
+        XCTAssertEqual(movie.isAdult(), false)
+        XCTAssertEqual(movie.getOverview(), "e")
+        XCTAssertEqual(movie.getReleaseDate(), "f")
+        XCTAssertEqual(movie.getGenreIds().count, 4)
         movie.getGenreNames { (genres) in
             XCTAssertEqual(genres.count, 0)
         }
@@ -111,42 +94,42 @@ class MoviesModelTests: XCTestCase {
     
     func testConfigurationValues(){
         
-        let schema = RLMSchema(objectClasses: [])
-        let config = Configuration(value: jsonConfig, schema: schema)
+        let schema = RLMSchema(objectClasses: [ConfigurationDB.self, GenreList.self, Movie.self, MovieTopRated.self, MoviePopular.self])
+        let config = ConfigurationDB(value: jsonConfig, schema: schema)
         
-        XCTAssertEqual(config.getId().value, 1)
-        XCTAssertEqual(config.getBaseUrl().value, "a")
-        XCTAssertEqual(config.getBackdropSizes().value.count, 1)
-        XCTAssertEqual(config.getPosterSizes().value.count, 1)
+        XCTAssertEqual(config.getId(), 1)
+        XCTAssertEqual(config.getBaseUrl(), "a")
+        XCTAssertEqual(config.getBackdropSizes().count, 1)
+        XCTAssertEqual(config.getPosterSizes().count, 1)
     }
     
     func testGenreListValues(){
         
-        let schema = RLMSchema(objectClasses: [])
+        let schema = RLMSchema(objectClasses: [ConfigurationDB.self, GenreList.self, Movie.self, MovieTopRated.self, MoviePopular.self])
         let genreList = GenreList(value: jsonGenreList, schema: schema)
         
-        XCTAssertEqual(genreList.getId().value, 1)
-        XCTAssertEqual(genreList.getName().value, "a")
+        XCTAssertEqual(genreList.getId(), 1)
+        XCTAssertEqual(genreList.getName(), "a")
     }
     
     func testGetAllLocalMovieTopRated(){
         let expc = self.expectation(description: #function)
-        
+
         let serviceConfig = ConfigurationService()
         serviceConfig.requestConfiguration { (config, error) in
-            
+
             XCTAssertNotNil(config)
             XCTAssertNil(error)
-            
+
             let serviceTopRated = TopRatedService()
             serviceTopRated.requestTopRated(page: 1) { (movies, page, error) in
-                getObjects(MovieTopRated.self) { (moviesDB) in
+                allObjects(type: MovieTopRated.self, completion: { (moviesDB) in
                     expc.fulfill()
                     XCTAssertGreaterThan(moviesDB.count, 0)
-                }
+                })
             }
         }
-        
+
         waitForExpectations(timeout: apiTimeout, handler: nil)
     }
     
@@ -155,10 +138,10 @@ class MoviesModelTests: XCTestCase {
         
         let service = PopularService()
         service.requestPopular(page: 1) { (movies, page, error) in
-            getObjects(MoviePopular.self) { (moviesDB) in
+            allObjects(type: MoviePopular.self, completion: { (moviesDB) in
                 expc.fulfill()
                 XCTAssertGreaterThan(moviesDB.count, 0)
-            }
+            })
         }
         
         waitForExpectations(timeout: apiTimeout, handler: nil)
@@ -175,7 +158,7 @@ class MoviesModelTests: XCTestCase {
             
             let serviceTopRated = TopRatedService()
             serviceTopRated.requestTopRated(page: 1) { (movies, page, error) in
-                getObjects(MovieTopRated.self, filter: "id > 1", completion: { (moviesDB) in
+                allObjects(type: MoviePopular.self, filter: "id > 1", completion: { (moviesDB) in
                     expc.fulfill()
                     XCTAssertGreaterThan(moviesDB.count, 0)
                 })
@@ -194,7 +177,7 @@ class MoviesModelTests: XCTestCase {
             XCTAssertNotNil(config)
             XCTAssertNil(error)
             
-            GenreList.allObjects(completion: { (objects: [GenreList]) in
+            allObjects(type: GenreList.self, completion: { (objects: [GenreList]) in
                 expc.fulfill()
                 XCTAssertGreaterThan(objects.count, 0)
             })
@@ -214,7 +197,7 @@ class MoviesModelTests: XCTestCase {
             
             let serviceTopRated = TopRatedService()
             serviceTopRated.requestTopRated(page: 1) { (movies, page, error) in
-                Movie.allObjects(filter: "id = -1", completion: { (moviesDB) in
+                allObjects(type: Movie.self, filter: "id = -1", completion: { (moviesDB) in
                     expc.fulfill()
                     XCTAssertEqual(moviesDB.count, 0)
                 })

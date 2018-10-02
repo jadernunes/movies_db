@@ -11,7 +11,7 @@ import Foundation
 protocol ConfigurationServiceDelegate {
     
     /// Representation of data result
-    typealias ConfigurationCompletion = ((_ configuration: Configuration?, _ error: ErrorMoviesDB?) -> Void)
+    typealias ConfigurationCompletion = ((_ configuration: ConfigurationRepresentable?, _ error: ErrorMoviesDB?) -> Void)
     
     /// Request base configuration for other requests
     ///

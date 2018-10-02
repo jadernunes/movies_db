@@ -7,11 +7,10 @@
 //
 
 import Foundation
-import RxSwift
 import RealmSwift
 import Realm
 
-class Movie: BaseModel, ModelProtocol {
+class Movie: Object {
     
     //MARK: - Attributes
     
@@ -32,53 +31,50 @@ class Movie: BaseModel, ModelProtocol {
     
     //MARK: - Custom methods
     
-    func getId() -> Variable<Int> {
-        return Variable<Int>(id)
+    func getId() -> Int {
+        return id
     }
     
-    func getVoteAvarage() -> Variable<Double> {
-        return Variable<Double>(vote_average)
+    func getVoteAvarage() -> Double {
+        return vote_average
     }
     
-    func getTitle() -> Variable<String> {
-        guard let title = title else { return Variable<String>("") }
-        return Variable<String>(title)
+    func getTitle() -> String {
+        return title ?? ""
     }
     
-    func getPosterPath() -> Variable<String> {
-        guard let poster_path = poster_path else { return Variable<String>("") }
-        return Variable<String>(poster_path)
+    func getPosterPath() -> String {
+        return poster_path ?? ""
     }
     
-    func getOriginalLanguage() -> Variable<String> {
-        guard let original_language = original_language else { return Variable<String>("") }
-        return Variable<String>(original_language)
+    func getOriginalLanguage() -> String {
+        return original_language ?? ""
     }
     
-    func getBackdropPath() -> Variable<String?> {
-        guard let backdrop_path = backdrop_path else { return Variable<String?>("") }
-        return Variable<String?>(backdrop_path)
+    func getBackdropPath() -> String? {
+        return backdrop_path
     }
     
-    func isAdult() -> Variable<Bool> {
-        guard let adult = adult else { return Variable<Bool>(true) }
-        return Variable<Bool>(adult)
+    func isAdult() -> Bool {
+        return adult ?? false
     }
     
-    func getOverview() -> Variable<String> {
-        guard let overview = overview else { return Variable<String>("") }
-        return Variable<String>(overview)
+    func getOverview() -> String {
+        return overview ?? ""
     }
     
-    func getReleaseDate() -> Variable<String> {
-        guard let release_date = release_date else { return Variable<String>("") }
-        return Variable<String>(release_date)
+    func getReleaseDate() -> String {
+        return release_date ?? ""
+    }
+    
+    func getGenres() -> [GenreList] {
+        return Array(genres)
     }
     
     func getGenreNames(completion: @escaping (([String]) -> Void)) {
         var listGenres: [String] = []
         self.genres.forEach({ (genre) in
-            let name = genre.getName().value
+            let name = genre.getName()
             if  name.count > 0 {
                 listGenres.append(name)
             }

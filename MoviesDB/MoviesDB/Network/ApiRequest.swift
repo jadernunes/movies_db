@@ -48,20 +48,18 @@ final class ApiRequest: ApiRequestDelegate {
                 queue: DispatchQueue.global(qos: DispatchQoS.QoSClass.default),
                 options: JSONSerialization.ReadingOptions.allowFragments)
             { (response: DataResponse) in
-                DispatchQueue.main.async {
-                    let errorCustom = ErrorMoviesDB(error: response.result.error)
-                    do {
-                        guard
-                            let data = response.data,
-                            let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any],
-                            let _ = json[KeysJson.statusMessage.rawValue] as? String
-                            else {
-                                return completion(response.data, errorCustom)
-                        }
-                        completion(response.data, ErrorMoviesDB(message: R.string.localizable.messageRequestFail()))
-                    } catch {
-                        completion(response.data, errorCustom)
+                let errorCustom = ErrorMoviesDB(error: response.result.error)
+                do {
+                    guard
+                        let data = response.data,
+                        let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any],
+                        let _ = json[KeysJson.statusMessage.rawValue] as? String
+                        else {
+                            return completion(response.data, errorCustom)
                     }
+                    completion(response.data, ErrorMoviesDB(message: R.string.localizable.messageRequestFail()))
+                } catch {
+                    completion(response.data, errorCustom)
                 }
         }
     }

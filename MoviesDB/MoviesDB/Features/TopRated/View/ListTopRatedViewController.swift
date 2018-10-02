@@ -96,7 +96,9 @@ class ListTopRatedViewController: UIViewController {
         viewModel.isLoading.asObservable().subscribe({ [weak self] isLoading  in
             guard let isLoading = isLoading.element  else { return }
             if isLoading == false {
-                self?.refreshControl.endRefreshing()
+                DispatchQueue.main.async {
+                    self?.refreshControl.endRefreshing()
+                }
             }
         }).disposed(by: self.disposeBag)
         
@@ -107,7 +109,9 @@ class ListTopRatedViewController: UIViewController {
                     let errorElement = object.element,
                     let error = errorElement
                     else { return }
-                self?.showErrorMesssage(mesage: error.message)
+                DispatchQueue.main.async {
+                    self?.showErrorMesssage(mesage: error.message)
+                }
             })
             .disposed(by: disposeBag)
         
