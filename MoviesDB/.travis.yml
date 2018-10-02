@@ -1,0 +1,19 @@
+sudo: enabled
+osx_image: xcode9.4
+language: objective-c
+xcode_project: MoviesDB.xcodeproj # path to your xcodeproj folder
+xcode_scheme: MoviesDB
+
+before_install:
+- rm -rf ~/Library/Developer/Xcode/DerivedData
+
+before_script:
+  # bootstrap the dependencies for the project
+  # you can remove if you don't have dependencies
+- sudo gem install cocoapods --pre
+- pod repo update
+- pod install
+
+script:
+- xcodebuild -version
+- xcodebuild -workspace MoviesDB.xcworkspace -scheme 'MoviesDB' -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 6s" clean build
