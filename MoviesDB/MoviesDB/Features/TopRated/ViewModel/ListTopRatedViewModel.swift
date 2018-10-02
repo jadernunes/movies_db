@@ -18,7 +18,7 @@ final class ListTopRatedViewModel {
     private var delegate: TopRatedControllerDelegate
     
     /// Contains movies data
-    var movies: Variable<[MovieTopRated]> = Variable<[MovieTopRated]>([])
+    var movies: Variable<[MovieTopRatedRepresentable]> = Variable<[MovieTopRatedRepresentable]>([])
     
     /// Control the request loading status. If TRUE will start the loading and FALSE stop that
     var isLoading: Variable<Bool> = Variable<Bool>(true)
@@ -57,8 +57,12 @@ final class ListTopRatedViewModel {
         }
         
         MovieTopRated.allObjects { [weak self] (movies: [MovieTopRated]) in
+            let result = movies.map({ (realmObject) -> MovieTopRatedRepresentable in
+                return MovieTopRatedRepresentable(movieTopRated: realmObject)
+            })
+            
             if self?.nextPage == 0 {
-                self?.movies.value = movies
+                self?.movies.value = result
             }
             
             self?.delegate.requestTopRated(page: page ?? self?.page ?? 0) { [weak self] (movies, pageReceived, errorCustom) in

@@ -14,23 +14,21 @@ extension UIImageView {
     
     func addPosterImage(subPath: String){
         Configuration.allObjects { (objects: [Configuration]) in
-            if let objConfig = objects.first {
-                let urlBase = objConfig.getBaseUrl().value
-                let sizeImage = objConfig.getPosterSizes().value[1]
-                let url = URL(string: "\(String(describing: urlBase))\(sizeImage)\(subPath)")
-                self.kf.setImage(with: url, placeholder: R.image.posterPlaceholder())
-            }
+            let objConfig = ConfigurationRepresentable(configuration: objects.first)
+            let urlBase = objConfig.getBaseUrl().value
+            let sizeImage = objConfig.getPosterSizes().value[1]
+            let url = URL(string: "\(String(describing: urlBase))\(sizeImage)\(subPath)")
+            self.kf.setImage(with: url, placeholder: R.image.posterPlaceholder())
         }
     }
     
     func addBackdropImage(subPath: String){
         Configuration.allObjects { (objects: [Configuration]) in
-            if let objConfig = objects.first {
-                let urlBase = objConfig.getBaseUrl().value
-                let sizeImage = objConfig.getBackdropSizes().value[1]
-                let url = URL(string: "\(String(describing: urlBase))\(sizeImage)\(subPath)")
-                self.kf.setImage(with: url, placeholder: R.image.backdropPlaceholder())
-            }
+            let objConfig = ConfigurationRepresentable(configuration: objects.first)
+            let urlBase = objConfig.getBaseUrl().value
+            let sizeImage = objConfig.getBackdropSizes().value[1]
+            let url = URL(string: "\(String(describing: urlBase))\(sizeImage)\(subPath)")
+            self.kf.setImage(with: url, placeholder: R.image.backdropPlaceholder())
         }
     }
 }

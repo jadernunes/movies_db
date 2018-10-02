@@ -21,7 +21,7 @@ class MovieCellViewModel {
     var urlPoster: Variable<String> = Variable<String>("")
     
     /// Contains movie data
-    var movie: Movie? {
+    var movie: MovieRepresentable? {
         didSet {
             guard let movie = movie else { return }
             

@@ -18,7 +18,7 @@ final class ListPopularViewModel {
     private var delegate: PopularControllerDelegate
     
     /// Contains movies data
-    var movies: Variable<[MoviePopular]> = Variable<[MoviePopular]>([])
+    var movies: Variable<[MoviePopularRepresentable]> = Variable<[MoviePopularRepresentable]>([])
     
     /// Control the request loading status. If TRUE will start the loading and FALSE stop that
     var isLoading: Variable<Bool> = Variable<Bool>(true)
@@ -58,8 +58,12 @@ final class ListPopularViewModel {
         }
         
         MoviePopular.allObjects { [weak self] (movies: [MoviePopular]) in
+            let result = movies.map({ (realmObject) -> MoviePopularRepresentable in
+                return MoviePopularRepresentable(moviePopular: realmObject)
+            })
+            
             if self?.nextPage == 0 {
-                self?.movies.value = movies
+                self?.movies.value = result
             }
             
             self?.delegate.requestPopular(page: page ?? self?.page ?? 0) { [weak self] (movies, pageReceived, errorCustom) in

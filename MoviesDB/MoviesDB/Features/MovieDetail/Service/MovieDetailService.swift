@@ -44,8 +44,10 @@ final class MovieDetailService: MovieDetailServiceDelegate {
                         else {
                             return completion(nil, ErrorMoviesDB(message: R.string.localizable.messageLoadMovieDetailFail()))
                     }
-                    Movie.save(data: json, completion: { (movie) in
-                        completion(movie, nil)
+                    
+                    Movie.save(data: json, completion: { (movie: Movie?) in
+                        let represent = MovieRepresentable(movie: movie)
+                        completion(represent, nil)
                     })
                 } catch {
                     completion(nil, ErrorMoviesDB(message: R.string.localizable.messageLoadDataFail()))

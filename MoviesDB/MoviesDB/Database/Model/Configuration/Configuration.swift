@@ -7,11 +7,10 @@
 //
 
 import Foundation
-import RxSwift
 import RealmSwift
 import Realm
 
-class Configuration: BaseModel, ModelProtocol {
+class Configuration: Object, ModelProtocol {
     
     //MARK: - Attributes
     
@@ -26,20 +25,20 @@ class Configuration: BaseModel, ModelProtocol {
     
     //MARK: - Custom methods
     
-    func getId() -> Variable<Int> {
-        return Variable<Int>(id)
+    func getId() -> Int {
+        return id
     }
     
-    func getBaseUrl() -> Variable<String> {
-        return Variable<String>(base_url)
+    func getBaseUrl() -> String {
+        return base_url
     }
     
-    func getBackdropSizes() -> Variable<[String]> {
-        return Variable<[String]>(Array(backdrop_sizes))
+    func getBackdropSizes() -> [String] {
+        return Array(backdrop_sizes)
     }
     
-    func getPosterSizes() -> Variable<[String]> {
-        return Variable<[String]>(Array(poster_sizes))
+    func getPosterSizes() -> [String] {
+        return Array(poster_sizes)
     }
 }
 

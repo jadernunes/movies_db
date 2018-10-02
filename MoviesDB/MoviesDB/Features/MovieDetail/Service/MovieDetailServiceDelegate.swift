@@ -9,7 +9,7 @@
 import Foundation
 
 /// Representation of data result
-typealias MovieDetailCompletion = ((_ movie: Movie?, _ error: ErrorMoviesDB?) -> Void)
+typealias MovieDetailCompletion = ((_ movie: MovieRepresentable?, _ error: ErrorMoviesDB?) -> Void)
 
 protocol MovieDetailServiceDelegate {
     

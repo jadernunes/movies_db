@@ -47,8 +47,11 @@ final class PopularService: PopularServiceDelegate {
                             return completion([], page, ErrorMoviesDB(message: R.string.localizable.messageLoadPopularFail()))
                     }
                     
-                    MoviePopular.save(array: results, completion: { (array) in
-                        completion(array, pageReceived, nil)
+                    MoviePopular.save(array: results, completion: { (array: [MoviePopular]) in
+                        let result = array.map({ (realmObject) -> MoviePopularRepresentable in
+                            return MoviePopularRepresentable(moviePopular: realmObject)
+                        })
+                        completion(result, pageReceived, nil)
                     })
                 } catch {
                     completion([], page, ErrorMoviesDB(message: R.string.localizable.messageLoadDataFail()))

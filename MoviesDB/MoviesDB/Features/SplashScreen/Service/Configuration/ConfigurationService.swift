@@ -43,8 +43,9 @@ final class ConfigurationService: ConfigurationServiceDelegate {
                             return completion(nil, ErrorMoviesDB(message: R.string.localizable.messageLoadImagesFail()))
                     }
                     
-                    Configuration.save(data: configurationJson, completion: { (object) in
-                        completion(object, nil)
+                    Configuration.save(data: configurationJson, completion: { (object: Configuration?) in
+                        let represent = ConfigurationRepresentable(configuration: object)
+                        completion(represent,nil)
                     })
                 } catch {
                     completion(nil, ErrorMoviesDB(message: R.string.localizable.messageLoadDataFail()))

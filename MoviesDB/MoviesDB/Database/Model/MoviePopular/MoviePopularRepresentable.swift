@@ -1,22 +1,21 @@
 //
-//  MovieTopRated.swift
+//  MoviePopularRepresentable.swift
 //  MoviesDB
 //
-//  Created by Jader Nunes on 2018-09-17.
+//  Created by Jader Nunes on 2018-09-30.
 //  Copyright © 2018 Jader Nunes. All rights reserved.
 //
 
 import Foundation
-import RealmSwift
-import Realm
+import RxSwift
 
-class MovieTopRated: Movie {
+class MoviePopularRepresentable: MovieRepresentable {
     
-    private var isTopRated: Bool = true
-    private var genre_ids = List<Int>()
+    private var genre_ids = [Int]()
     
-    func getGenreIds() -> [Int] {
-        return Array(genre_ids)
+    init(moviePopular: MoviePopular?) {
+        self.genre_ids = moviePopular?.getGenreIds() ?? []
+        super.init(movie: moviePopular)
     }
     
     override func getGenreNames(completion: @escaping (([String]) -> Void)) {

@@ -11,7 +11,7 @@ import Foundation
 protocol GenreListServiceDelegate {
     
     /// Representation of data result
-    typealias GenreListCompletion = ((_ genres: [GenreList], _ error: ErrorMoviesDB?) -> Void)
+    typealias GenreListCompletion = ((_ genres: [GenreListRepresentable], _ error: ErrorMoviesDB?) -> Void)
     
     /// Request genre list
     ///

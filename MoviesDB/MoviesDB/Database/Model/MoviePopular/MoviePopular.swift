@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import RxSwift
 import RealmSwift
 import Realm
 
@@ -16,15 +15,15 @@ class MoviePopular: Movie {
     private var isPopular: Bool = true
     private var genre_ids = List<Int>()
     
-    func getGenreIds() -> Variable<[Int]> {
-        return Variable<[Int]>(Array(genre_ids))
+    func getGenreIds() -> [Int] {
+        return Array(genre_ids)
     }
     
     override func getGenreNames(completion: @escaping (([String]) -> Void)) {
         var listGenres: [String] = []
-        GenreList.allObjects(completion: { (genres) in
+        GenreList.allObjects(completion: { (genres: [GenreList]) in
             self.genre_ids.forEach({ (idGenre) in
-                if let name = genres.filter({ $0.getId().value == idGenre }).first?.getName().value {
+                if let name = genres.filter({ $0.getId() == idGenre }).first?.getName() {
                     listGenres.append(name)
                 }
             })
